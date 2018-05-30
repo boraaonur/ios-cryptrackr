@@ -12,6 +12,9 @@
 		9BEC0FEA20BF6933003200F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE820BF6933003200F6 /* Main.storyboard */; };
 		9BEC0FEC20BF6933003200F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FEB20BF6933003200F6 /* Assets.xcassets */; };
 		9BEC0FEF20BF6933003200F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FED20BF6933003200F6 /* LaunchScreen.storyboard */; };
+		9BEC0FF720BF6AC8003200F6 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */; };
+		9BEC0FF920BF6B3F003200F6 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */; };
+		9BEC0FFB20BF6BC9003200F6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		9BEC0FEB20BF6933003200F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BEC0FEE20BF6933003200F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BEC0FF020BF6933003200F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
+		9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				9BEC0FEB20BF6933003200F6 /* Assets.xcassets */,
 				9BEC0FED20BF6933003200F6 /* LaunchScreen.storyboard */,
 				9BEC0FF020BF6933003200F6 /* Info.plist */,
+				9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */,
+				9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */,
+				9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */,
 			);
 			path = Cryptrack;
 			sourceTree = "<group>";
@@ -137,6 +146,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BEC0FE720BF6933003200F6 /* ViewController.swift in Sources */,
+				9BEC0FF920BF6B3F003200F6 /* PortfolioViewController.swift in Sources */,
+				9BEC0FFB20BF6BC9003200F6 /* DetailViewController.swift in Sources */,
+				9BEC0FF720BF6AC8003200F6 /* WatchlistViewController.swift in Sources */,
 				9BEC0FE520BF6933003200F6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,7 +290,7 @@
 				DEVELOPMENT_TEAM = P88C5K7GWZ;
 				INFOPLIST_FILE = Cryptrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = baonur.Cryptrack;
+				PRODUCT_BUNDLE_IDENTIFIER = baonur.cryptrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -293,7 +305,7 @@
 				DEVELOPMENT_TEAM = P88C5K7GWZ;
 				INFOPLIST_FILE = Cryptrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = baonur.Cryptrack;
+				PRODUCT_BUNDLE_IDENTIFIER = baonur.cryptrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
