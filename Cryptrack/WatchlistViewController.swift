@@ -15,6 +15,8 @@ class WatchlistViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setting default value for tableView row height to stop WARNING in console
+        tableView.rowHeight = 44
         
     }
     
