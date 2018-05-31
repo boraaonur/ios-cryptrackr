@@ -15,6 +15,8 @@
 		9BEC0FF720BF6AC8003200F6 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */; };
 		9BEC0FF920BF6B3F003200F6 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */; };
 		9BEC0FFB20BF6BC9003200F6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */; };
+		9BEC0FFD20BF73E4003200F6 /* AddCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFC20BF73E4003200F6 /* AddCoinViewController.swift */; };
+		9BEC0FFF20BF787F003200F6 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFE20BF787F003200F6 /* WatchlistCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
 		9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9BEC0FFC20BF73E4003200F6 /* AddCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinViewController.swift; sourceTree = "<group>"; };
+		9BEC0FFE20BF787F003200F6 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */,
 				9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */,
 				9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */,
+				9BEC0FFC20BF73E4003200F6 /* AddCoinViewController.swift */,
+				9BEC0FFE20BF787F003200F6 /* WatchlistCell.swift */,
 			);
 			path = Cryptrack;
 			sourceTree = "<group>";
@@ -145,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BEC0FFF20BF787F003200F6 /* WatchlistCell.swift in Sources */,
 				9BEC0FE720BF6933003200F6 /* ViewController.swift in Sources */,
+				9BEC0FFD20BF73E4003200F6 /* AddCoinViewController.swift in Sources */,
 				9BEC0FF920BF6B3F003200F6 /* PortfolioViewController.swift in Sources */,
 				9BEC0FFB20BF6BC9003200F6 /* DetailViewController.swift in Sources */,
 				9BEC0FF720BF6AC8003200F6 /* WatchlistViewController.swift in Sources */,
