@@ -45,7 +45,7 @@ class AddCoinViewController: UIViewController {
 
     func loadCurrencies() {
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
-        request.predicate = NSPredicate(format: "inWatchlist", false)
+        request.predicate = NSPredicate(format: "inWatchlist == %@", "0")
         if let currencies = try? context.fetch(request) {
             for currency in currencies {
                 currencyArray.append(currency)
@@ -73,12 +73,6 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func fetchWatchlist() -> Watchlist {
-        let request: NSFetchRequest<Watchlist> = Watchlist.fetchRequest()
-        let watchlist = try? context.fetch(request)
-        return watchlist![0]
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         
@@ -86,17 +80,12 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
         if cell?.accessoryType == .checkmark {
             cell?.accessoryType = .none
             // delete from watchlist
+            currencyArray[indexPath.row].setValue(false, forKey: "inWatchlist")
         } else {
             cell?.accessoryType = .checkmark
-            // add to watchlist
-            let currency = Currency(context: context)
-            currency.name = currencyArray[indexPath.row].name
-            currency.symbol = currencyArray[indexPath.row].symbol
-            currency.watchlist = fetchWatchlist()
-            currency.inWatchlist = true
-            try? context.save()
-            
+            currencyArray[indexPath.row].setValue(true, forKey: "inWatchlist")
         }
+        try? context.save()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

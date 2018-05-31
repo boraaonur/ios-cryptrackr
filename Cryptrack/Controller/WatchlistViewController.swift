@@ -22,6 +22,7 @@ class WatchlistViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         loadWatchlistCurrencies()
         tableView.reloadData()
     }
@@ -32,8 +33,9 @@ class WatchlistViewController: UITableViewController {
     
     func loadWatchlistCurrencies() {
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
-        request.predicate = NSPredicate(format: "watchlist.id MATCHES %@", "1")
+        request.predicate = NSPredicate(format: "inWatchlist == %@", "1")
         do {
+            print("test")
             watchlistCurrencies = try context.fetch(request)
         } catch {
             print("Error reading context")

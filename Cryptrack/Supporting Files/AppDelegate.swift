@@ -16,21 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        print("x")
-        // checking if we've created first and only Watchlist
-        let request: NSFetchRequest<Watchlist> = Watchlist.fetchRequest()
-        if let watchlist = try? persistentContainer.viewContext.fetch(request) {
-            print("y")
-            if watchlist.isEmpty {
-                print("z")
-                let watchlist = Watchlist(context: persistentContainer.viewContext)
-                watchlist.id = "1"
-                try? persistentContainer.viewContext.save()
-            }
-        }
-        
-        
-        
         return true
     }
     
