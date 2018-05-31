@@ -44,10 +44,12 @@ class AddCoinViewController: UIViewController {
 
     func loadCurrencies() {
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
+        // request.predicate = NSPredicate(format: "", )
         if let currencies = try? context.fetch(request) {
             for currency in currencies {
                 currencyArray.append(currency)
             }
+            
         }
     }
 }
@@ -63,15 +65,10 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func fetchWatchlist() -> Watchlist? {
+    func fetchWatchlist() -> Watchlist {
         let request: NSFetchRequest<Watchlist> = Watchlist.fetchRequest()
-        do {
-            let watchlist = try context.fetch(request)
-            return watchlist[0]
-        } catch {
-            print("error fetching watchlist")
-            return nil
-        }
+        let watchlist = try? context.fetch(request)
+        return watchlist![0]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

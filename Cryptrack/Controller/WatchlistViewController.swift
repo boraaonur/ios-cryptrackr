@@ -13,6 +13,7 @@ class WatchlistViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var watchlistCurrencies = [Currency]()
+    var addedCurrencies = [Currency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,8 @@ class WatchlistViewController: UITableViewController {
     }
     
     func loadWatchlistCurrencies() {
-        let watchlist = fetchWatchlist()
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
-        request.predicate = NSPredicate(format: "watchlist.id MATCHES %@", (watchlist.id)!)
+        request.predicate = NSPredicate(format: "watchlist.id MATCHES %@", "1")
         do {
             watchlistCurrencies = try context.fetch(request)
         } catch {
@@ -46,11 +46,6 @@ class WatchlistViewController: UITableViewController {
         }
     }
     
-    func fetchWatchlist() -> Watchlist {
-        let request: NSFetchRequest<Watchlist> = Watchlist.fetchRequest()
-        let watchlist = try? context.fetch(request)
-        return watchlist![0]
-    }
 }
 
 // MARK: - Table view data source
