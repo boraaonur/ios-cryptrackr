@@ -40,7 +40,6 @@ extension WatchlistViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchlistCell
-        cell.textLabel?.text = cell.pair
         
         return cell
     }
