@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Currency" representedClassName="Currency" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="inWatchlist" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="symbol" attributeType="String" syncable="YES"/>
         <relationship name="watchlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Watchlist" inverseName="currency" inverseEntity="Watchlist" syncable="YES"/>
@@ -12,6 +13,6 @@
     </entity>
     <elements>
         <element name="Watchlist" positionX="-243" positionY="21" width="128" height="73"/>
-        <element name="Currency" positionX="0" positionY="45" width="128" height="103"/>
+        <element name="Currency" positionX="0" positionY="45" width="128" height="118"/>
     </elements>
 </model>

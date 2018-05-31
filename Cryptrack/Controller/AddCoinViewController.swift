@@ -16,6 +16,7 @@ class AddCoinViewController: UIViewController {
     let bittrexClient = BittrexClient.shared
     var currencyArray: [Currency] = [Currency]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    lazy var itemsToDelete = [Currency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,7 @@ class AddCoinViewController: UIViewController {
 
     func loadCurrencies() {
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
-        // request.predicate = NSPredicate(format: "", )
+        request.predicate = NSPredicate(format: "inWatchlist", false)
         if let currencies = try? context.fetch(request) {
             for currency in currencies {
                 currencyArray.append(currency)
@@ -62,6 +63,13 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.textLabel?.text = currencyArray[indexPath.row].name
+        
+        if currencyArray[indexPath.row].inWatchlist {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
     
@@ -85,8 +93,14 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
             currency.name = currencyArray[indexPath.row].name
             currency.symbol = currencyArray[indexPath.row].symbol
             currency.watchlist = fetchWatchlist()
+            currency.inWatchlist = true
             try? context.save()
             
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
     }
 }

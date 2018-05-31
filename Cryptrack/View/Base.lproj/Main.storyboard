@@ -147,7 +147,6 @@
                     <navigationItem key="navigationItem" title="Watchlist" id="6Ca-gc-r2o">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xsz-hZ-pnl">
                             <connections>
-                                <action selector="addClicked:" destination="3y2-vG-nzi" id="o3y-lU-UIZ"/>
                                 <segue destination="xJo-lS-bwu" kind="show" id="VSQ-G3-AxS"/>
                             </connections>
                         </barButtonItem>
@@ -199,7 +198,7 @@
             </objects>
             <point key="canvasLocation" x="2364" y="196"/>
         </scene>
-        <!--Add Coin View Controller-->
+        <!--Select coins-->
         <scene sceneID="Dzu-jW-CkG">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="xJo-lS-bwu" customClass="AddCoinViewController" customModule="Cryptrack" customModuleProvider="target" sceneMemberID="viewController">
@@ -241,6 +240,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kVr-qY-nrx"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Select coins" id="95y-7m-9lG"/>
                     <connections>
                         <outlet property="searchBar" destination="M4D-7V-s7f" id="qsh-81-P42"/>
                         <outlet property="searchDisplayController" destination="0Il-EC-0Pg" id="Y6I-ey-pWm"/>

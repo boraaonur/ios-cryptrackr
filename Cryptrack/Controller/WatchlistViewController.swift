@@ -13,7 +13,6 @@ class WatchlistViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var watchlistCurrencies = [Currency]()
-    var addedCurrencies = [Currency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +22,8 @@ class WatchlistViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         loadWatchlistCurrencies()
         tableView.reloadData()
-    }
-    
-    @IBAction func addClicked(_ sender: UIBarButtonItem) {
-        //
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
