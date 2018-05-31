@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import CoreData
 
 class WatchlistViewController: UITableViewController {
     
-    var selectedCell: WatchlistCell?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var watchlistCurrencies = [Currency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setting default value for tableView row height to stop WARNING in console
         tableView.rowHeight = 44
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        loadWatchlistCurrencies()
+        tableView.reloadData()
     }
     
     @IBAction func addClicked(_ sender: UIBarButtonItem) {
@@ -26,6 +33,23 @@ class WatchlistViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToDetailVC", sender: nil)
+    }
+    
+    func loadWatchlistCurrencies() {
+        let watchlist = fetchWatchlist()
+        let request: NSFetchRequest<Currency> = Currency.fetchRequest()
+        request.predicate = NSPredicate(format: "watchlist.id MATCHES %@", (watchlist.id)!)
+        do {
+            watchlistCurrencies = try context.fetch(request)
+        } catch {
+            print("Error reading context")
+        }
+    }
+    
+    func fetchWatchlist() -> Watchlist {
+        let request: NSFetchRequest<Watchlist> = Watchlist.fetchRequest()
+        let watchlist = try? context.fetch(request)
+        return watchlist![0]
     }
 }
 
@@ -37,12 +61,12 @@ extension WatchlistViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return watchlistCurrencies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchlistCell
-        
+        cell.textLabel?.text = watchlistCurrencies[indexPath.row].name
         return cell
     }
 }

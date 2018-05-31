@@ -14,10 +14,15 @@ class WatchlistCell: UITableViewCell {
     @IBOutlet var icon: UIImageView!
     @IBOutlet var currencyNameLabel: UILabel!
     @IBOutlet var trend: UIImageView!
+    @IBOutlet var percentageLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        currencyNameLabel.text = ""
+        percentageLabel.text = ""
+        priceLabel.text = ""
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -58,8 +58,38 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.textLabel?.text = currencyArray[indexPath.row].name
         return cell
+    }
+    
+    func fetchWatchlist() -> Watchlist? {
+        let request: NSFetchRequest<Watchlist> = Watchlist.fetchRequest()
+        do {
+            let watchlist = try context.fetch(request)
+            return watchlist[0]
+        } catch {
+            print("error fetching watchlist")
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        // Refactor this
+        if cell?.accessoryType == .checkmark {
+            cell?.accessoryType = .none
+            // delete from watchlist
+        } else {
+            cell?.accessoryType = .checkmark
+            // add to watchlist
+            let currency = Currency(context: context)
+            currency.name = currencyArray[indexPath.row].name
+            currency.symbol = currencyArray[indexPath.row].symbol
+            currency.watchlist = fetchWatchlist()
+            try? context.save()
+            
+        }
     }
 }

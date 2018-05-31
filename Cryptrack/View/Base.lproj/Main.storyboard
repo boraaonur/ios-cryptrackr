@@ -134,6 +134,8 @@
                                 <connections>
                                     <outlet property="currencyNameLabel" destination="Gof-QB-z8i" id="WMq-BC-FMf"/>
                                     <outlet property="icon" destination="v8r-Fn-FTm" id="pwe-d6-Vov"/>
+                                    <outlet property="percentageLabel" destination="Do0-YP-jcn" id="8fG-rD-auy"/>
+                                    <outlet property="priceLabel" destination="2T7-VS-BkH" id="cHJ-g0-X2F"/>
                                     <outlet property="trend" destination="VUP-9d-LHb" id="gqN-PX-LrF"/>
                                 </connections>
                             </tableViewCell>
@@ -216,11 +218,11 @@
                                 <rect key="frame" x="0.0" y="120" width="414" height="616"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="cell" id="8Nn-NN-teM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8Nn-NN-teM">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Nn-NN-teM" id="xQz-t4-8Pt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
