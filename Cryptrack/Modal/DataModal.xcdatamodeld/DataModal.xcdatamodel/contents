@@ -2,14 +2,15 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Currency" representedClassName="Currency" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="symbol" attributeType="String" syncable="YES"/>
         <relationship name="watchlist" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Watchlist" inverseName="currency" inverseEntity="Watchlist" syncable="YES"/>
     </entity>
     <entity name="Watchlist" representedClassName="Watchlist" syncable="YES" codeGenerationType="class">
         <relationship name="currency" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="watchlist" inverseEntity="Currency" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Currency" positionX="414" positionY="161" width="128" height="88"/>
+        <element name="Currency" positionX="414" positionY="161" width="128" height="105"/>
         <element name="Watchlist" positionX="682" positionY="176" width="128" height="58"/>
     </elements>
 </model>

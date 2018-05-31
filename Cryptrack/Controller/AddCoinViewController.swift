@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class AddCoinViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    let bittrexClient = BittrexClient.shared
+    var currencyArray: [Currency] = [Currency]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +24,42 @@ class AddCoinViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadCurrencies()
+        print("downloaded from coredata")
+        if currencyArray.count == 0 {
+            bittrexClient.getCoins {
+                print("downloading from zero")
+                self.loadCurrencies()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+    }
 
+    func loadCurrencies() {
+        let request: NSFetchRequest<Currency> = Currency.fetchRequest()
+        if let currencies = try? context.fetch(request) {
+            for currency in currencies {
+                currencyArray.append(currency)
+            }
+        }
+    }
 }
 
 extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return currencyArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Y"
+        cell.textLabel?.text = currencyArray[indexPath.row].name
         return cell
     }
 }
