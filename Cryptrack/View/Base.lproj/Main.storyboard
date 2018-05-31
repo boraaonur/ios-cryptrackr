@@ -22,7 +22,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="S9a-3f-KfT"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Portfolio" id="tjj-ZD-0va"/>
+                    <navigationItem key="navigationItem" title="Portfolio" id="tjj-ZD-0va">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="3ZZ-gW-VuQ"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCV-Gv-UoT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,6 +147,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Watchlist" id="6Ca-gc-r2o">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="xPT-Dn-BgG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xsz-hZ-pnl">
                             <connections>
                                 <segue destination="xJo-lS-bwu" kind="show" id="VSQ-G3-AxS"/>
