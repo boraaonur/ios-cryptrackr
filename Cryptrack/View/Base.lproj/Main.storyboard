@@ -148,14 +148,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Watchlist" id="6Ca-gc-r2o">
                         <barButtonItem key="leftBarButtonItem" systemItem="search" id="xPT-Dn-BgG"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xsz-hZ-pnl">
-                            <connections>
-                                <segue destination="xJo-lS-bwu" kind="show" id="VSQ-G3-AxS"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xsz-hZ-pnl"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="Xsz-hZ-pnl" id="J0G-4O-OBk"/>
+                        <outlet property="navigationBar" destination="6Ca-gc-r2o" id="BXA-Jq-Bus"/>
                         <segue destination="0mm-JJ-ChC" kind="show" identifier="goToDetailVC" id="kSl-hZ-gE1"/>
+                        <segue destination="xJo-lS-bwu" kind="show" identifier="goToAddCoinVC" id="MI0-5m-gN2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faD-n7-OYi" userLabel="First Responder" sceneMemberID="firstResponder"/>

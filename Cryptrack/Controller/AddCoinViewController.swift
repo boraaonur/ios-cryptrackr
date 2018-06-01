@@ -17,6 +17,7 @@ class AddCoinViewController: UIViewController {
     var currencyArray: [Currency] = [Currency]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     lazy var itemsToDelete = [Currency]()
+    var filteredArray: [Currency] = [Currency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class AddCoinViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,11 +48,11 @@ class AddCoinViewController: UIViewController {
     func loadCurrencies() {
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
         request.predicate = NSPredicate(format: "inWatchlist == %@", "0")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         if let currencies = try? context.fetch(request) {
             for currency in currencies {
                 currencyArray.append(currency)
             }
-            
         }
     }
 }
@@ -73,6 +75,8 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         
@@ -92,4 +96,29 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
         super.viewWillDisappear(animated)
         
     }
+}
+
+
+extension AddCoinViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        currencyArray.removeAll() // this allows update on deletion
+        loadCurrencies()
+        if searchBar.text?.isEmpty == false {
+            currencyArray = currencyArray.filter({ (currency) -> Bool in
+                let currencyName = currency.name?.lowercased()
+                let result = currencyName?.range(of: searchText.lowercased())
+                return result != nil
+            })
+        } else {
+            loadCurrencies()
+        }
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        currencyArray.removeAll()
+        loadCurrencies()
+        tableView.reloadData()
+    }
+    
 }
