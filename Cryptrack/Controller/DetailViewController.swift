@@ -45,71 +45,107 @@ class DetailViewController: UIViewController {
         
         touchedPrice.layer.zPosition = 1
         
-        bittrexClient.getCurrencyData(currency) { (currencyData) in
-            DispatchQueue.main.async {
-                self.pairLabel.text = "Pair: \(currencyData.marketName!)"
-                self.yesterdayLabel.text = "Yesterday: \(currencyData.yesterday!)"
-                self.highLabel.text = "24h High: \(currencyData.high!)"
-                self.lowLabel.text = "24h Low: \(currencyData.low!)"
-                self.volumeLabel.text = "24h Volume: \(currencyData.volume!)"
-                self.volumeBTCLabel.text = "24h Volume(BTC): \(currencyData.btcVolume!)"
+        bittrexClient.getCurrencyData(currency) { (currencyData, error) in
+            if error != nil {
+                self.displayError(message: error!)
+            } else {
+                DispatchQueue.main.async {
+                    if let pair = currencyData?.marketName {
+                        self.pairLabel.text = "Pair: \(pair)"
+                    }
+                    
+                    if let yesterday = currencyData?.yesterday {
+                        self.yesterdayLabel.text = "Yesterday: \(yesterday)"
+                    }
+                    
+                    if let high = currencyData?.high {
+                        self.highLabel.text = "24h High: \(high)"
+                    }
+                    
+                    if let low = currencyData?.low {
+                        self.lowLabel.text = "24h Low: \(low)"
+                    }
+                    
+                    if let volume = currencyData?.volume {
+                        self.volumeLabel.text = "24h Volume: \(volume)"
+                    }
+                    
+                    if let volumeBTC = currencyData?.btcVolume {
+                        self.volumeBTCLabel.text = "24h Volume(BTC): \(volumeBTC)"
+                    }
+                }
             }
         }
         
-        bittrexClient.getOrderbook(currency, type: "buy") { (orderList) in
-            for i in orderList {
-                let rate = i["Rate"] as! Double
-                let quantity = i["Quantity"] as! Double
-                let bid = Order(rate: rate, quantity: quantity)
-                self.bidArray.append(bid)
-            }
-            DispatchQueue.main.async {
-                self.bidTableView.reloadData()
+        bittrexClient.getOrderbook(currency, type: "buy") { (orderList, error) in
+            if error != nil {
+                self.displayError(message: error!)
+            } else {
+                for i in orderList! {
+                    let rate = i["Rate"] as! Double
+                    let quantity = i["Quantity"] as! Double
+                    let bid = Order(rate: rate, quantity: quantity)
+                    self.bidArray.append(bid)
+                }
+                DispatchQueue.main.async {
+                    self.bidTableView.reloadData()
+                }
             }
         }
         
-        bittrexClient.getOrderbook(currency, type: "sell") { (orderList) in
-            for i in orderList {
-                let rate = i["Rate"] as! Double
-                let quantity = i["Quantity"] as! Double
-                let ask = Order(rate: rate, quantity: quantity)
-                self.askArray.append(ask)
-            }
-            DispatchQueue.main.async {
-                self.askTableView.reloadData()
+        bittrexClient.getOrderbook(currency, type: "sell") { (orderList, error) in
+            if error != nil {
+                self.displayError(message: error!)
+            } else {
+                for i in orderList! {
+                    let rate = i["Rate"] as! Double
+                    let quantity = i["Quantity"] as! Double
+                    let ask = Order(rate: rate, quantity: quantity)
+                    self.askArray.append(ask)
+                }
+                DispatchQueue.main.async {
+                    self.askTableView.reloadData()
+                }
             }
         }
         
         // 30min - Daily (Default)
         chartLoadingIndicator.startAnimating()
-        bittrexClient.getHistoricalData(currency, tickInterval: "thirtyMin", count: 48) { (data) in
-            let series = ChartSeries(data)
-            print(data)
-            self.chart.gridColor = .white
-            self.chart.showXLabelsAndGrid = false
-            self.chart.showYLabelsAndGrid = false
-            series.area = true
-            series.color = ChartColors.greenColor()
-            DispatchQueue.main.async {
-                self.chart.add(series)
-                self.chartLoadingIndicator.stopAnimating()
+        bittrexClient.getHistoricalData(currency, tickInterval: "thirtyMin", count: 48) { (data, error) in
+            if error != nil {
+                self.displayError(message: error!)
+            } else {
+                let series = ChartSeries(data!)
+                self.chart.gridColor = .white
+                self.chart.showXLabelsAndGrid = false
+                self.chart.showYLabelsAndGrid = false
+                series.area = true
+                series.color = ChartColors.greenColor()
+                DispatchQueue.main.async {
+                    self.chart.add(series)
+                    self.chartLoadingIndicator.stopAnimating()
+                }
             }
+            
         }
     }
     
     func chartData(tickInterval: String, count: Int) {
         chartLoadingIndicator.startAnimating()
-        bittrexClient.getHistoricalData(currency, tickInterval: tickInterval, count: count) { (data) in
-            let series = ChartSeries(data)
-            print(data)
-            self.chart.gridColor = .white
-            self.chart.showXLabelsAndGrid = false
-            self.chart.showYLabelsAndGrid = false
-            series.area = true
-            series.color = ChartColors.greenColor()
-            DispatchQueue.main.async {
-                self.chart.add(series)
-                self.chartLoadingIndicator.stopAnimating()
+        bittrexClient.getHistoricalData(currency, tickInterval: tickInterval, count: count) { (data, error) in
+            if error != nil {
+                self.displayError(message: error!)
+            } else {
+                let series = ChartSeries(data!)
+                self.chart.gridColor = .white
+                self.chart.showXLabelsAndGrid = false
+                self.chart.showYLabelsAndGrid = false
+                series.area = true
+                series.color = ChartColors.greenColor()
+                DispatchQueue.main.async {
+                    self.chart.add(series)
+                    self.chartLoadingIndicator.stopAnimating()
+                }
             }
         }
     }
@@ -184,7 +220,6 @@ extension DetailViewController: ChartDelegate {
                 // The series at `seriesIndex` is that which has been touched
                 let value = chart.valueForSeries(seriesIndex, atIndex: dataIndex)
                 touchedPrice.text = String(value!)
-                print(value)
             }
         }
     }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B535D4520C1135900982A6D /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B535D4420C1135900982A6D /* CurrencyData.swift */; };
 		9B535D4720C1251A00982A6D /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B535D4620C1251A00982A6D /* Bid.swift */; };
+		9BC51A4520C17156000110A2 /* displayError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC51A4420C17156000110A2 /* displayError.swift */; };
 		9BEC0FE520BF6933003200F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE420BF6933003200F6 /* AppDelegate.swift */; };
 		9BEC0FEA20BF6933003200F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE820BF6933003200F6 /* Main.storyboard */; };
 		9BEC0FEC20BF6933003200F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FEB20BF6933003200F6 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		5D44C0B1FA4393B74297279C /* Pods-Cryptrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptrack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cryptrack/Pods-Cryptrack.release.xcconfig"; sourceTree = "<group>"; };
 		9B535D4420C1135900982A6D /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
 		9B535D4620C1251A00982A6D /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
+		9BC51A4420C17156000110A2 /* displayError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = displayError.swift; sourceTree = "<group>"; };
 		9BEC0FE120BF6933003200F6 /* Cryptrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BEC0FE420BF6933003200F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BEC0FE920BF6933003200F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				9BEC0FE420BF6933003200F6 /* AppDelegate.swift */,
 				9BEC0FF020BF6933003200F6 /* Info.plist */,
+				9BC51A4420C17156000110A2 /* displayError.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				9BEC0FFB20BF6BC9003200F6 /* DetailViewController.swift in Sources */,
 				9BEC100920BF9D7C003200F6 /* DataModal.xcdatamodeld in Sources */,
 				9BEC100F20BFA2FE003200F6 /* BittrexClient.swift in Sources */,
+				9BC51A4520C17156000110A2 /* displayError.swift in Sources */,
 				9BEC0FF720BF6AC8003200F6 /* WatchlistViewController.swift in Sources */,
 				9B535D4520C1135900982A6D /* CurrencyData.swift in Sources */,
 				9BEC0FE520BF6933003200F6 /* AppDelegate.swift in Sources */,

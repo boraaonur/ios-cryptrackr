@@ -30,10 +30,14 @@ class WatchlistViewController: UITableViewController {
         tableView.reloadData()
         for i in watchlistCurrencies {
             if i.icon == nil {
-                bittrexClient.downloadLogo(currency: i, completion: {
-                    self.loadWatchlistCurrencies()
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                bittrexClient.downloadLogo(currency: i, completion: { (error) in
+                    if error != nil {
+                        self.displayError(message: error!)
+                    } else {
+                        self.loadWatchlistCurrencies()
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
                 })
             }
@@ -113,21 +117,31 @@ extension WatchlistViewController {
         longPressGestureRecognizer.minimumPressDuration = 1
         cell.addGestureRecognizer(longPressGestureRecognizer)
         
-        bittrexClient.getLastPrice(watchlistCurrencies[indexPath.row]) { (lastPrice) in
-            DispatchQueue.main.async {
-                cell.priceLabel.text = String(lastPrice)
+        bittrexClient.getLastPrice(watchlistCurrencies[indexPath.row]) { (lastPrice, error)  in
+            if error != nil {
+                self.displayError(message: error!)
+            } else {
+                DispatchQueue.main.async {
+                    if let price = lastPrice {
+                        cell.priceLabel.text = String(price)
+                    }
+                }
             }
-        }
-        
-        cell.loadingIndicator.startAnimating()
-        if let data = watchlistCurrencies[indexPath.row].icon {
+            
             DispatchQueue.main.async {
-                 cell.icon.image = UIImage(data: data)
+                cell.loadingIndicator.startAnimating()
+            }
+            
+            if let data = self.watchlistCurrencies[indexPath.row].icon {
+                DispatchQueue.main.async {
+                    cell.icon.image = UIImage(data: data)
                     cell.loadingIndicator.stopAnimating()
+                }
             }
-        }
-        
-        return cell
+            
+            
+            }
+            return cell
     }
     
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {

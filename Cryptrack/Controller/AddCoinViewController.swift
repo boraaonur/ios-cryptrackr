@@ -65,12 +65,16 @@ class AddCoinViewController: UIViewController {
             loadCurrencies()
             // If first launch
             if currencyArray.count == 0 {
-                bittrexClient.getCoins {
-                    self.loadCurrencies()
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                bittrexClient.getCoins(completion: { (error) in
+                    if error != nil {
+                        self.displayError(message: error!)
+                    } else {
+                        self.loadCurrencies()
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
-                }
+                })
             // If not first launch
             } else {
                 

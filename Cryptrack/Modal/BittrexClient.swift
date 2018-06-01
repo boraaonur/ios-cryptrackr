@@ -14,13 +14,13 @@ class BittrexClient {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func getCoins(completion: @escaping () -> Void) {
+    func getCoins(completion: @escaping (_ error: String?) -> Void) {
         let url = URL(string: "https://bittrex.com/api/v1.1/public/getcurrencies")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                completion(error!.localizedDescription)
             } else {
                 if data != nil {
                     let parsedResult: [String:Any]
@@ -39,49 +39,50 @@ class BittrexClient {
                                 try? self.context.save()
                             }
                         }
-                        completion()
+                        completion(nil)
                         
                     } catch {
-                        print("c")
+                        completion("Something went wrong")
                     }
                 } else {
-                    print("data is nil")
+                    completion("Something went wrong")
                 }
             }
         }
         task.resume()
     }
     
-    func getCurrencyData(_ currency: Currency, completion: @escaping (_ data: CurrencyData) -> Void) {
+    func getCurrencyData(_ currency: Currency, completion: @escaping (_ data: CurrencyData?,_ error: String?) -> Void) {
         let url = URL(string: "https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-\(currency.symbol!)")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                completion(nil, error?.localizedDescription)
             } else {
                 do {
                     let parsedResult: [String:Any]
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                     if let result = parsedResult["result"] as? [[String:Any]] {
                         let currencyData = CurrencyData(dictionary: result[0])
-                        completion(currencyData!)
+                        completion(currencyData!, nil)
                     }
                 } catch {
-                    print("Error parsing data")
+                    completion(nil, "Something went wrong")
                 }
             }
         }
         task.resume()
     }
     
-    func getLastPrice(_ currency: Currency, completion: @escaping (_ lastPrice: Double) -> Void) {
+    func getLastPrice(_ currency: Currency, completion: @escaping (_ lastPrice: Double?,_ error: String?) -> Void) {
         let url = URL(string: "https://bittrex.com/api/v1.1/public/getticker?market=BTC-\(currency.symbol!)")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 print(error!.localizedDescription)
+                completion(nil, error!.localizedDescription)
             } else {
                 let parsedResult: [String:Any]
                 do {
@@ -90,48 +91,49 @@ class BittrexClient {
                         for i in result {
                             if i.key == "Last" {
                                 let lastPrice = (i.value as! Double)
-                                completion(lastPrice)
+                                completion(lastPrice, nil)
                             }
                         }
                     }
                 } catch {
-                    print("Error parsing data")
+                    completion(nil, "Something went wrong")
                 }
             }
         }
         task.resume()
     }
     
-    func getOrderbook(_ currency: Currency, type: String, completion: @escaping (_ orders: [[String:Any]]) -> Void) {
+    func getOrderbook(_ currency: Currency, type: String, completion: @escaping (_ orders: [[String:Any]]?,_ error: String?) -> Void) {
         let url = URL(string: "https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-\(currency.symbol!)&type=both")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                completion(nil, error?.localizedDescription)
             } else {
                 let parsedResult: [String:Any]
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                     if let result = parsedResult["result"] as? [String:Any] {
                         let orderArray = result["\(type)"] as! [[String:Any]]
-                        completion(orderArray)
+                        completion(orderArray, nil)
                     }
                 } catch {
-                    print("error parsing data")
+                    completion(nil, "Something went wrong")
                 }
             }
         }
         task.resume()
     }
     
-    func getHistoricalData(_ currency: Currency, tickInterval: String, count: Int, completion: @escaping (_ data: [Float]) -> Void) {
+    func getHistoricalData(_ currency: Currency, tickInterval: String, count: Int, completion: @escaping (_ data: [Float]?, _ error: String?) -> Void) {
         let url = URL(string: "https://bittrex.com/Api/v2.0/pub/market/GetTicks?marketName=BTC-\(currency.symbol!)&tickInterval=\(tickInterval)")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 print(error!.localizedDescription)
+                completion(nil, error!.localizedDescription)
             } else {
                 let parsedResult: [String:Any]
                 do {
@@ -148,10 +150,10 @@ class BittrexClient {
                                 break;
                             }
                         }
-                        completion(graphData)
+                        completion(graphData, nil)
                     }
                 } catch {
-                    print("error parsing data")
+                    completion(nil, "Something went wrong")
                 }
             }
         }
@@ -159,13 +161,14 @@ class BittrexClient {
         
     }
     
-    func downloadLogo(currency: Currency, completion: @escaping () -> Void) {
+    func downloadLogo(currency: Currency, completion: @escaping (_ error: String?) -> Void) {
         let url = URL(string:"https://bittrex.com/api/v1.1/public/getmarkets")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 print(error!.localizedDescription)
+                completion(error!.localizedDescription)
             } else {
                 let parsedResult: [String:Any]
                 do {
@@ -180,14 +183,13 @@ class BittrexClient {
                                 let url = URL(string: urlString)
                                 let data = try? Data(contentsOf: url!)
                                 currency.icon = data
-                                
                             }
                         }
                         try? self.context.save()
-                        completion()
+                        completion(nil)
                     }
                 } catch {
-                    print("error parsing data in downloadLogo function")
+                    completion("Something went wrong")
                 }
                 
             }
