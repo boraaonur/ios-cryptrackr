@@ -386,9 +386,38 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yYX-XU-mc5">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsZ-AK-Quv">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-OX-GBG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
-                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsZ-AK-Quv" customClass="Chart" customModule="SwiftChart">
+                                                <rect key="frame" x="0.0" y="44" width="375" height="257"/>
+                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mna-UG-ngz">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                <items>
+                                                    <barButtonItem title="1m" id="3fE-Jl-qGP"/>
+                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6tt-Vc-pWt"/>
+                                                    <barButtonItem title="5m" id="lZu-U0-brP"/>
+                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="aWK-kc-5ff"/>
+                                                    <barButtonItem title="30m" id="dxM-ot-W8S"/>
+                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bGs-vg-GLF"/>
+                                                    <barButtonItem title="1h" id="dj0-8t-9Y3"/>
+                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nd4-8t-X6B"/>
+                                                    <barButtonItem title="1D" id="Mry-If-cPL"/>
+                                                </items>
+                                            </toolbar>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="mna-UG-ngz" firstAttribute="leading" secondItem="nPW-OX-GBG" secondAttribute="leading" id="3Pa-gu-faA"/>
+                                            <constraint firstAttribute="trailing" secondItem="mna-UG-ngz" secondAttribute="trailing" id="I2k-cm-b5v"/>
+                                            <constraint firstAttribute="trailing" secondItem="IsZ-AK-Quv" secondAttribute="trailing" id="Om8-xE-pU1"/>
+                                            <constraint firstItem="IsZ-AK-Quv" firstAttribute="leading" secondItem="nPW-OX-GBG" secondAttribute="leading" id="gwJ-5b-MCj"/>
+                                            <constraint firstItem="IsZ-AK-Quv" firstAttribute="top" secondItem="mna-UG-ngz" secondAttribute="bottom" id="hZY-EE-iYe"/>
+                                            <constraint firstItem="mna-UG-ngz" firstAttribute="top" secondItem="nPW-OX-GBG" secondAttribute="top" id="jFm-ye-493"/>
+                                            <constraint firstAttribute="bottom" secondItem="IsZ-AK-Quv" secondAttribute="bottom" id="uqQ-Us-FjE"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paQ-Cc-4Hf">
                                         <rect key="frame" x="0.0" y="301.5" width="375" height="301.5"/>
@@ -573,6 +602,7 @@
                     <connections>
                         <outlet property="askTableView" destination="tDk-Dz-670" id="n1C-kc-eu6"/>
                         <outlet property="bidTableView" destination="IIM-Xz-Fp6" id="rkD-1s-Avq"/>
+                        <outlet property="chart" destination="IsZ-AK-Quv" id="FML-O4-6sY"/>
                         <outlet property="highLabel" destination="iB7-9v-YcS" id="o5P-cz-913"/>
                         <outlet property="lowLabel" destination="Hcx-g0-ubf" id="gAw-fg-mYd"/>
                         <outlet property="navigationBar" destination="0p3-MX-eeJ" id="Sgt-Kj-5Ux"/>
@@ -596,7 +626,7 @@
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="M4D-7V-s7f">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="xJo-lS-bwu" id="7Py-6O-mVe"/>
                                 </connections>
@@ -605,7 +635,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8Nn-NN-teM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8Nn-NN-teM">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Nn-NN-teM" id="xQz-t4-8Pt">

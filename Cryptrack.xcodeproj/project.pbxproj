@@ -21,9 +21,13 @@
 		9BEC0FFF20BF787F003200F6 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFE20BF787F003200F6 /* WatchlistCell.swift */; };
 		9BEC100920BF9D7C003200F6 /* DataModal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC100720BF9D7C003200F6 /* DataModal.xcdatamodeld */; };
 		9BEC100F20BFA2FE003200F6 /* BittrexClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC100E20BFA2FE003200F6 /* BittrexClient.swift */; };
+		E7EF9B157778A3A870D8EA8D /* Pods_Cryptrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CCEBF38C1C6592208C7F274 /* Pods_Cryptrack.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CCEBF38C1C6592208C7F274 /* Pods_Cryptrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cryptrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E6AA4DF8CBEB189D0B8441F /* Pods-Cryptrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptrack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cryptrack/Pods-Cryptrack.debug.xcconfig"; sourceTree = "<group>"; };
+		5D44C0B1FA4393B74297279C /* Pods-Cryptrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptrack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cryptrack/Pods-Cryptrack.release.xcconfig"; sourceTree = "<group>"; };
 		9B535D4420C1135900982A6D /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
 		9B535D4620C1251A00982A6D /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		9BEC0FE120BF6933003200F6 /* Cryptrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,17 +51,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7EF9B157778A3A870D8EA8D /* Pods_Cryptrack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AA0BE2E83163DE90EC6E8C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1E6AA4DF8CBEB189D0B8441F /* Pods-Cryptrack.debug.xcconfig */,
+				5D44C0B1FA4393B74297279C /* Pods-Cryptrack.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9BEC0FD820BF6933003200F6 = {
 			isa = PBXGroup;
 			children = (
 				9BEC0FE320BF6933003200F6 /* Cryptrack */,
 				9BEC0FE220BF6933003200F6 /* Products */,
+				5AA0BE2E83163DE90EC6E8C1 /* Pods */,
+				B5BB493025B5E152B8992568 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +139,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B5BB493025B5E152B8992568 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1CCEBF38C1C6592208C7F274 /* Pods_Cryptrack.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,9 +154,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BEC0FF320BF6933003200F6 /* Build configuration list for PBXNativeTarget "Cryptrack" */;
 			buildPhases = (
+				DAA97A7FACD07F45DC70A84C /* [CP] Check Pods Manifest.lock */,
 				9BEC0FDD20BF6933003200F6 /* Sources */,
 				9BEC0FDE20BF6933003200F6 /* Frameworks */,
 				9BEC0FDF20BF6933003200F6 /* Resources */,
+				0F2CC07B050B7638197A1868 /* [CP] Embed Pods Frameworks */,
+				70D764B7814B3998CD23FD75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,6 +216,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F2CC07B050B7638197A1868 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cryptrack/Pods-Cryptrack-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cryptrack/Pods-Cryptrack-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70D764B7814B3998CD23FD75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cryptrack/Pods-Cryptrack-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAA97A7FACD07F45DC70A84C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cryptrack-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9BEC0FDD20BF6933003200F6 /* Sources */ = {
@@ -340,6 +421,7 @@
 		};
 		9BEC0FF420BF6933003200F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E6AA4DF8CBEB189D0B8441F /* Pods-Cryptrack.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -355,6 +437,7 @@
 		};
 		9BEC0FF520BF6933003200F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D44C0B1FA4393B74297279C /* Pods-Cryptrack.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -188,4 +188,7 @@ extension AddCoinViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }

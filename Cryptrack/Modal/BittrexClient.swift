@@ -63,9 +63,7 @@ class BittrexClient {
                 do {
                     let parsedResult: [String:Any]
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
-                    print(parsedResult)
                     if let result = parsedResult["result"] as? [[String:Any]] {
-                        //print(result[0])
                         let currencyData = CurrencyData(dictionary: result[0])
                         completion(currencyData!)
                     }
@@ -126,5 +124,39 @@ class BittrexClient {
         }
         task.resume()
     }
+    
+    func getHistoricalData(_ currency: Currency, tickInterval: String, count: Int, completion: @escaping (_ data: [Float]) -> Void) {
+        let url = URL(string: "https://bittrex.com/Api/v2.0/pub/market/GetTicks?marketName=BTC-\(currency.symbol!)&tickInterval=\(tickInterval)")
+        let request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                let parsedResult: [String:Any]
+                do {
+                    parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
+                    if let result = parsedResult["result"] as? [[String:Any]] {
+                        print("result check")
+                        var x = 0
+                        var graphData = [Float]()
+                        for i in result {
+                            let singleData = i["O"] as! Float
+                            graphData.append(singleData)
+                            x += 1
+                            if x == count {
+                                break;
+                            }
+                        }
+                        completion(graphData)
+                    }
+                } catch {
+                    print("error parsing data")
+                }
+            }
+        }
+        task.resume()
         
+    }
+    
 }

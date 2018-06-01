@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftChart
 
 class DetailViewController: UIViewController {
 
@@ -23,6 +24,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var askTableView: UITableView!
     var bidArray = [Order]()
     var askArray = [Order]()
+    @IBOutlet var chart: Chart!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,9 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let series = ChartSeries([0, 6, 2, 8, 4, 7, 3, 10, 8])
+        series.color = ChartColors.greenColor()
+        chart.add(series)
         
         bittrexClient.getCurrencyData(currency) { (currencyData) in
             DispatchQueue.main.async {
@@ -74,6 +79,17 @@ class DetailViewController: UIViewController {
             }
         }
         
+        // 30min - Daily (Default)
+        bittrexClient.getHistoricalData(currency, tickInterval: "thirtyMin", count: 48) { (data) in
+            let series = ChartSeries(data)
+            print(data)
+            series.color = ChartColors.greenColor()
+            self.chart.xLabels = [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45]
+            DispatchQueue.main.async {
+                self.chart.add(series)
+            }
+            
+        }
     }
 }
 
