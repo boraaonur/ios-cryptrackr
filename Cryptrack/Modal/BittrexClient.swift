@@ -10,7 +10,6 @@ import UIKit
 
 class BittrexClient {
     static let shared = BittrexClient()
-    private init() {}
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     

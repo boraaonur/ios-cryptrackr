@@ -35,10 +35,8 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         chart.delegate = self
-        bidTableView.delegate = self
-        bidTableView.dataSource = self
-        askTableView.delegate = self
-        askTableView.dataSource = self
+        setupTableView(tableView: bidTableView)
+        setupTableView(tableView: askTableView)
         askTableView.rowHeight = 20
         bidTableView.rowHeight = 20
     }
@@ -98,9 +96,9 @@ class DetailViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.bidTableView.reloadData()
+                    self.bidLoadingIndicator.stopAnimating()
                 }
             }
-            self.bidLoadingIndicator.stopAnimating()
         }
         
         askLoadingIndicator.startAnimating()
@@ -116,9 +114,9 @@ class DetailViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.askTableView.reloadData()
+                    self.askLoadingIndicator.stopAnimating()
                 }
             }
-            self.askLoadingIndicator.stopAnimating()
         }
         
         // 30min - Daily (Default)
@@ -127,15 +125,19 @@ class DetailViewController: UIViewController {
             if error != nil {
                 self.displayError(message: error!)
             } else {
-                let series = ChartSeries(data!)
-                self.chart.gridColor = .white
-                self.chart.showXLabelsAndGrid = false
-                self.chart.showYLabelsAndGrid = false
-                series.area = true
-                series.color = ChartColors.greenColor()
-                DispatchQueue.main.async {
-                    self.chart.add(series)
-                    self.chartLoadingIndicator.stopAnimating()
+                if data != nil {
+                    let series = ChartSeries(data!)
+                    self.chart.gridColor = .white
+                    self.chart.showXLabelsAndGrid = false
+                    self.chart.showYLabelsAndGrid = false
+                    series.area = true
+                    series.color = ChartColors.greenColor()
+                    DispatchQueue.main.async {
+                        self.chart.add(series)
+                        self.chartLoadingIndicator.stopAnimating()
+                    }
+                } else {
+                    print("no historical data for selected coin")
                 }
             }
             
@@ -148,16 +150,21 @@ class DetailViewController: UIViewController {
             if error != nil {
                 self.displayError(message: error!)
             } else {
-                let series = ChartSeries(data!)
-                self.chart.gridColor = .white
-                self.chart.showXLabelsAndGrid = false
-                self.chart.showYLabelsAndGrid = false
-                series.area = true
-                series.color = ChartColors.greenColor()
-                DispatchQueue.main.async {
-                    self.chart.add(series)
-                    self.chartLoadingIndicator.stopAnimating()
+                if data != nil {
+                    let series = ChartSeries(data!)
+                    self.chart.gridColor = .white
+                    self.chart.showXLabelsAndGrid = false
+                    self.chart.showYLabelsAndGrid = false
+                    series.area = true
+                    series.color = ChartColors.greenColor()
+                    DispatchQueue.main.async {
+                        self.chart.add(series)
+                        self.chartLoadingIndicator.stopAnimating()
+                    }
+                } else {
+                    print("no historical data for selected coin")
                 }
+                
             }
         }
     }
@@ -222,6 +229,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor(red: 232.0/255.0, green: 136.0/255.0, blue: 131.0/255.0, alpha: 1.0)
             return cell
         }
+    }
+    
+    func setupTableView(tableView: UITableView) {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
 
