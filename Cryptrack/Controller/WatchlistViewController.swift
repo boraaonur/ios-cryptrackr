@@ -26,7 +26,6 @@ class WatchlistViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         loadWatchlistCurrencies()
-        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -34,11 +33,13 @@ class WatchlistViewController: UITableViewController {
     }
     
     func loadWatchlistCurrencies() {
+        watchlistCurrencies.removeAll()
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
         request.predicate = NSPredicate(format: "inWatchlist == %@", "1")
+        request.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
         do {
-            print("test")
             watchlistCurrencies = try context.fetch(request)
+            tableView.reloadData()
         } catch {
             print("Error reading context")
         }
@@ -58,9 +59,14 @@ class WatchlistViewController: UITableViewController {
         navigationBar.rightBarButtonItem = addButton
     }
     
-    @objc func addClicked(sender: UIBarButtonItem) {
+    @objc func addClicked() {
         performSegue(withIdentifier: "goToAddCoinVC", sender: nil)
     }
+    
+    @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
+        addClicked()
+    }
+
 }
 
 // MARK: - Table view data source
@@ -81,7 +87,7 @@ extension WatchlistViewController {
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(enterEditMode))
         longPressGestureRecognizer.numberOfTouchesRequired = 1
         longPressGestureRecognizer.numberOfTapsRequired = 0
-        longPressGestureRecognizer.minimumPressDuration = 2
+        longPressGestureRecognizer.minimumPressDuration = 1
         cell.addGestureRecognizer(longPressGestureRecognizer)
         
         return cell
@@ -93,8 +99,19 @@ extension WatchlistViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedObject = watchlistCurrencies[sourceIndexPath.row]
+        
+        // Change index in visual array
         watchlistCurrencies.remove(at: sourceIndexPath.row)
         watchlistCurrencies.insert(movedObject, at: destinationIndexPath.row)
+        
+        // Update CoreData
+        var updatedIndex: Int16 = 0
+        for currency in watchlistCurrencies {
+            currency.index = updatedIndex
+            updatedIndex += 1
+        }
+        try? context.save()
+        loadWatchlistCurrencies()
         NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row)")
         // To check for correctness enable: self.tableView.reloadData()
     }

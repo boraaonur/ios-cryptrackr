@@ -148,7 +148,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Watchlist" id="6Ca-gc-r2o">
                         <barButtonItem key="leftBarButtonItem" systemItem="search" id="xPT-Dn-BgG"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xsz-hZ-pnl"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xsz-hZ-pnl">
+                            <connections>
+                                <action selector="addButtonClicked:" destination="3y2-vG-nzi" id="u2K-br-PnQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Xsz-hZ-pnl" id="J0G-4O-OBk"/>

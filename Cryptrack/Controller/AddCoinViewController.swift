@@ -23,6 +23,7 @@ class AddCoinViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -55,6 +56,18 @@ class AddCoinViewController: UIViewController {
             }
         }
     }
+    
+    func getWatchlistCurrencyCount() -> Int16 {
+        var count: Int16 = 0
+        let request: NSFetchRequest<Currency> = Currency.fetchRequest()
+        request.predicate = NSPredicate(format: "inWatchlist == %@", "1")
+        if let currencies = try? context.fetch(request) {
+            for _ in currencies {
+                count += 1
+            }
+        }
+        return count
+    }
 }
 
 extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
@@ -85,9 +98,13 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.accessoryType = .none
             // delete from watchlist
             currencyArray[indexPath.row].setValue(false, forKey: "inWatchlist")
+            currencyArray[indexPath.row].setValue(nil, forKey: "index")
         } else {
             cell?.accessoryType = .checkmark
             currencyArray[indexPath.row].setValue(true, forKey: "inWatchlist")
+            currencyArray[indexPath.row].setValue(getWatchlistCurrencyCount(), forKey: "index")
+            print("item added to index \(getWatchlistCurrencyCount())")
+
         }
         try? context.save()
     }
