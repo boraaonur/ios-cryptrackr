@@ -117,7 +117,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Watchlist" id="6Ca-gc-r2o">
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="xPT-Dn-BgG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xsz-hZ-pnl">
                             <connections>
                                 <action selector="addButtonClicked:" destination="3y2-vG-nzi" id="u2K-br-PnQ"/>
@@ -398,9 +397,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WCd-qs-yIV"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Market Summary" id="0p3-MX-eeJ">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="1Sb-rb-6wB"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Market Summary" id="0p3-MX-eeJ"/>
                     <connections>
                         <outlet property="askTableView" destination="tDk-Dz-670" id="n1C-kc-eu6"/>
                         <outlet property="bidTableView" destination="IIM-Xz-Fp6" id="rkD-1s-Avq"/>
