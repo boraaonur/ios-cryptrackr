@@ -86,6 +86,8 @@ class DetailViewController: UIViewController {
             let series = ChartSeries(data)
             print(data)
             self.chart.gridColor = .white
+            self.chart.showXLabelsAndGrid = false
+            self.chart.showYLabelsAndGrid = false
             series.area = true
             series.color = ChartColors.greenColor()
             DispatchQueue.main.async {
@@ -101,6 +103,8 @@ class DetailViewController: UIViewController {
             let series = ChartSeries(data)
             print(data)
             self.chart.gridColor = .white
+            self.chart.showXLabelsAndGrid = false
+            self.chart.showYLabelsAndGrid = false
             series.area = true
             series.color = ChartColors.greenColor()
             DispatchQueue.main.async {
