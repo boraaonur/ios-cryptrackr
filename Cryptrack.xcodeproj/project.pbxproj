@@ -10,12 +10,10 @@
 		9B535D4520C1135900982A6D /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B535D4420C1135900982A6D /* CurrencyData.swift */; };
 		9B535D4720C1251A00982A6D /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B535D4620C1251A00982A6D /* Bid.swift */; };
 		9BEC0FE520BF6933003200F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE420BF6933003200F6 /* AppDelegate.swift */; };
-		9BEC0FE720BF6933003200F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE620BF6933003200F6 /* ViewController.swift */; };
 		9BEC0FEA20BF6933003200F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE820BF6933003200F6 /* Main.storyboard */; };
 		9BEC0FEC20BF6933003200F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FEB20BF6933003200F6 /* Assets.xcassets */; };
 		9BEC0FEF20BF6933003200F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FED20BF6933003200F6 /* LaunchScreen.storyboard */; };
 		9BEC0FF720BF6AC8003200F6 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */; };
-		9BEC0FF920BF6B3F003200F6 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */; };
 		9BEC0FFB20BF6BC9003200F6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */; };
 		9BEC0FFD20BF73E4003200F6 /* AddCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFC20BF73E4003200F6 /* AddCoinViewController.swift */; };
 		9BEC0FFF20BF787F003200F6 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FFE20BF787F003200F6 /* WatchlistCell.swift */; };
@@ -32,13 +30,11 @@
 		9B535D4620C1251A00982A6D /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		9BEC0FE120BF6933003200F6 /* Cryptrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BEC0FE420BF6933003200F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9BEC0FE620BF6933003200F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9BEC0FE920BF6933003200F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9BEC0FEB20BF6933003200F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BEC0FEE20BF6933003200F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BEC0FF020BF6933003200F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
-		9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9BEC0FFC20BF73E4003200F6 /* AddCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinViewController.swift; sourceTree = "<group>"; };
 		9BEC0FFE20BF787F003200F6 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
@@ -101,9 +97,7 @@
 			children = (
 				9BEC0FF620BF6AC8003200F6 /* WatchlistViewController.swift */,
 				9BEC0FFC20BF73E4003200F6 /* AddCoinViewController.swift */,
-				9BEC0FF820BF6B3F003200F6 /* PortfolioViewController.swift */,
 				9BEC0FFA20BF6BC9003200F6 /* DetailViewController.swift */,
-				9BEC0FE620BF6933003200F6 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -277,9 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BEC0FFF20BF787F003200F6 /* WatchlistCell.swift in Sources */,
-				9BEC0FE720BF6933003200F6 /* ViewController.swift in Sources */,
 				9BEC0FFD20BF73E4003200F6 /* AddCoinViewController.swift in Sources */,
-				9BEC0FF920BF6B3F003200F6 /* PortfolioViewController.swift in Sources */,
 				9BEC0FFB20BF6BC9003200F6 /* DetailViewController.swift in Sources */,
 				9BEC100920BF9D7C003200F6 /* DataModal.xcdatamodeld in Sources */,
 				9BEC100F20BFA2FE003200F6 /* BittrexClient.swift in Sources */,
@@ -424,12 +416,14 @@
 			baseConfigurationReference = 1E6AA4DF8CBEB189D0B8441F /* Pods-Cryptrack.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P88C5K7GWZ;
 				INFOPLIST_FILE = "Cryptrack/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = baonur.cryptrack.com;
+				PRODUCT_BUNDLE_IDENTIFIER = "baonur.cryptrack-lite.com";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -440,12 +434,14 @@
 			baseConfigurationReference = 5D44C0B1FA4393B74297279C /* Pods-Cryptrack.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P88C5K7GWZ;
 				INFOPLIST_FILE = "Cryptrack/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = baonur.cryptrack.com;
+				PRODUCT_BUNDLE_IDENTIFIER = "baonur.cryptrack-lite.com";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

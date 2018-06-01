@@ -27,6 +27,19 @@ class WatchlistViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         loadWatchlistCurrencies()
+        tableView.reloadData()
+        for i in watchlistCurrencies {
+            if i.icon == nil {
+                bittrexClient.downloadLogo(currency: i, completion: {
+                    self.loadWatchlistCurrencies()
+                    print("ll")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                })
+            }
+            
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -40,7 +53,9 @@ class WatchlistViewController: UITableViewController {
         request.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
         do {
             watchlistCurrencies = try context.fetch(request)
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         } catch {
             print("Error reading context")
         }
@@ -91,7 +106,7 @@ extension WatchlistViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchlistCell
-        cell.textLabel?.text = watchlistCurrencies[indexPath.row].name
+        cell.currencyNameLabel.text = watchlistCurrencies[indexPath.row].name
         
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(enterEditMode))
         longPressGestureRecognizer.numberOfTouchesRequired = 1
@@ -102,6 +117,14 @@ extension WatchlistViewController {
         bittrexClient.getLastPrice(watchlistCurrencies[indexPath.row]) { (lastPrice) in
             DispatchQueue.main.async {
                 cell.priceLabel.text = String(lastPrice)
+            }
+        }
+        
+        cell.loadingIndicator.startAnimating()
+        if let data = watchlistCurrencies[indexPath.row].icon {
+            DispatchQueue.main.async {
+                 cell.icon.image = UIImage(data: data)
+                    cell.loadingIndicator.stopAnimating()
             }
         }
         

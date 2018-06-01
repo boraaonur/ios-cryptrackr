@@ -159,4 +159,40 @@ class BittrexClient {
         
     }
     
+    func downloadLogo(currency: Currency, completion: @escaping () -> Void) {
+        let url = URL(string:"https://bittrex.com/api/v1.1/public/getmarkets")
+        let request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                let parsedResult: [String:Any]
+                do {
+                    parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
+                    if let result = parsedResult["result"] as? [[String:Any]] {
+                        for i in result {
+                            let marketCurrency = i["MarketCurrency"] as! String
+                            let baseCurrency = i["BaseCurrency"] as! String // this is because there are 3x logoUrl (ETH and USDT pair)
+                            if currency.symbol == marketCurrency && baseCurrency == "BTC" {
+                                let urlString = i["LogoUrl"] as! String
+                                print(urlString)
+                                let url = URL(string: urlString)
+                                let data = try? Data(contentsOf: url!)
+                                currency.icon = data
+                                
+                            }
+                        }
+                        try? self.context.save()
+                        completion()
+                    }
+                } catch {
+                    print("error parsing data in downloadLogo function")
+                }
+                
+            }
+        }
+        task.resume()
+    }
+    
 }

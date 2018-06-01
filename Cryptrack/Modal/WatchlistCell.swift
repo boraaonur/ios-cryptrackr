@@ -16,6 +16,7 @@ class WatchlistCell: UITableViewCell {
     @IBOutlet var trend: UIImageView!
     @IBOutlet var percentageLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

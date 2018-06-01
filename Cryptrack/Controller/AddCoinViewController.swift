@@ -58,7 +58,10 @@ class AddCoinViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
+        
+            showWatchlistedEnabled = UserDefaults.standard.bool(forKey: "show")
+        
             loadCurrencies()
             // If first launch
             if currencyArray.count == 0 {
@@ -70,7 +73,7 @@ class AddCoinViewController: UIViewController {
                 }
             // If not first launch
             } else {
-                showWatchlistedEnabled = UserDefaults.standard.bool(forKey: "show")
+                
                 if showWatchlistedEnabled {
                     let hideWatchlistedButton = UIBarButtonItem(title: "Hide Watchlisted", style: .plain, target: self, action: #selector(hideWatchlisted))
                     navigationBar.rightBarButtonItem = hideWatchlistedButton
