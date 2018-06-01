@@ -13,8 +13,6 @@ class WatchlistCell: UITableViewCell {
     var pair = "BTC"
     @IBOutlet var icon: UIImageView!
     @IBOutlet var currencyNameLabel: UILabel!
-    @IBOutlet var trend: UIImageView!
-    @IBOutlet var percentageLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     
@@ -22,7 +20,6 @@ class WatchlistCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         currencyNameLabel.text = ""
-        percentageLabel.text = ""
         priceLabel.text = ""
     }
 

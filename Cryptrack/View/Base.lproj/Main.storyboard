@@ -65,35 +65,16 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VUP-9d-LHb">
-                                            <rect key="frame" x="253" y="11.5" width="21" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="VUP-9d-LHb" secondAttribute="height" multiplier="1:1" id="WaJ-QQ-FfJ"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+%1.41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Do0-YP-jcn">
-                                            <rect key="frame" x="192" y="11.5" width="53" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="2T7-VS-BkH" firstAttribute="leading" secondItem="VUP-9d-LHb" secondAttribute="trailing" constant="8" id="2mk-a2-QcQ"/>
-                                        <constraint firstItem="VUP-9d-LHb" firstAttribute="leading" secondItem="Do0-YP-jcn" secondAttribute="trailing" constant="8" id="HpR-oe-Wrf"/>
                                         <constraint firstItem="UnT-4g-HAO" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="MAO-Nu-5vA"/>
-                                        <constraint firstItem="Do0-YP-jcn" firstAttribute="height" secondItem="VUP-9d-LHb" secondAttribute="height" id="P0J-GW-bgG"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gof-QB-z8i" secondAttribute="trailing" constant="20" symbolic="YES" id="QRg-Qi-G2U"/>
                                         <constraint firstItem="v8r-Fn-FTm" firstAttribute="width" secondItem="q12-Uc-hIS" secondAttribute="height" multiplier="1:1" id="YIi-O0-coQ"/>
                                         <constraint firstItem="2T7-VS-BkH" firstAttribute="trailing" secondItem="q12-Uc-hIS" secondAttribute="trailingMargin" id="cBD-J6-9CT"/>
                                         <constraint firstItem="UnT-4g-HAO" firstAttribute="centerX" secondItem="v8r-Fn-FTm" secondAttribute="centerX" id="fFF-3b-f3g"/>
-                                        <constraint firstItem="VUP-9d-LHb" firstAttribute="height" secondItem="2T7-VS-BkH" secondAttribute="height" id="hIA-kp-9Uq"/>
                                         <constraint firstItem="Gof-QB-z8i" firstAttribute="leading" secondItem="v8r-Fn-FTm" secondAttribute="trailing" constant="8" id="jP8-FJ-tJ0"/>
                                         <constraint firstItem="v8r-Fn-FTm" firstAttribute="leading" secondItem="q12-Uc-hIS" secondAttribute="leading" id="lH1-lq-eyC"/>
                                         <constraint firstItem="2T7-VS-BkH" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="peB-FJ-Woh"/>
-                                        <constraint firstItem="Do0-YP-jcn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="q12-Uc-hIS" secondAttribute="leading" constant="20" symbolic="YES" id="sYy-zz-Zbu"/>
-                                        <constraint firstItem="VUP-9d-LHb" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="sch-x5-45D"/>
-                                        <constraint firstItem="Do0-YP-jcn" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="vWO-BD-07Z"/>
                                         <constraint firstAttribute="bottom" secondItem="v8r-Fn-FTm" secondAttribute="bottom" id="wQK-XM-2Eb"/>
                                         <constraint firstItem="v8r-Fn-FTm" firstAttribute="height" secondItem="q12-Uc-hIS" secondAttribute="height" id="wWt-Jy-L1S"/>
                                         <constraint firstItem="Gof-QB-z8i" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="xMS-vS-C4n"/>
@@ -106,9 +87,7 @@
                                     <outlet property="currencyNameLabel" destination="Gof-QB-z8i" id="WMq-BC-FMf"/>
                                     <outlet property="icon" destination="v8r-Fn-FTm" id="pwe-d6-Vov"/>
                                     <outlet property="loadingIndicator" destination="UnT-4g-HAO" id="pno-ft-bze"/>
-                                    <outlet property="percentageLabel" destination="Do0-YP-jcn" id="8fG-rD-auy"/>
                                     <outlet property="priceLabel" destination="2T7-VS-BkH" id="cHJ-g0-X2F"/>
-                                    <outlet property="trend" destination="VUP-9d-LHb" id="gqN-PX-LrF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
