@@ -153,6 +153,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = String(self.bidArray[indexPath.row].quantity!)
             cell.detailTextLabel?.font = UIFont(name: "HelveticaNeue", size: 8)
             cell.detailTextLabel?.text = String(self.bidArray[indexPath.row].rate!)
+            cell.detailTextLabel?.textColor = .black
             cell.backgroundColor = UIColor(red: 128.0/255.0, green: 206.0/255.0, blue: 160.0/255.0, alpha: 1.0)
             return cell
         } else {
@@ -160,7 +161,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 8)
             cell.textLabel?.text = String(self.askArray[indexPath.row].quantity!)
             cell.detailTextLabel?.font = UIFont(name: "HelveticaNeue", size: 8)
-            cell.detailTextLabel?.text = String(self.askArray[indexPath.row].quantity!)
+            cell.detailTextLabel?.text = String(self.askArray[indexPath.row].rate!)
+            cell.detailTextLabel?.textColor = .black
             cell.backgroundColor = UIColor(red: 232.0/255.0, green: 136.0/255.0, blue: 131.0/255.0, alpha: 1.0)
             return cell
         }
