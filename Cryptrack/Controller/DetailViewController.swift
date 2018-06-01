@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     var bidArray = [Order]()
     var askArray = [Order]()
     @IBOutlet var chart: Chart!
+    @IBOutlet var chartLoadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +40,6 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let series = ChartSeries([0, 6, 2, 8, 4, 7, 3, 10, 8])
-        series.color = ChartColors.greenColor()
-        chart.add(series)
         
         bittrexClient.getCurrencyData(currency) { (currencyData) in
             DispatchQueue.main.async {
@@ -80,17 +77,60 @@ class DetailViewController: UIViewController {
         }
         
         // 30min - Daily (Default)
+        chartLoadingIndicator.startAnimating()
         bittrexClient.getHistoricalData(currency, tickInterval: "thirtyMin", count: 48) { (data) in
             let series = ChartSeries(data)
             print(data)
+            self.chart.gridColor = .white
+            series.area = true
             series.color = ChartColors.greenColor()
-            self.chart.xLabels = [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45]
             DispatchQueue.main.async {
                 self.chart.add(series)
+                self.chartLoadingIndicator.stopAnimating()
             }
-            
         }
     }
+    
+    func chartData(tickInterval: String, count: Int) {
+        chartLoadingIndicator.startAnimating()
+        bittrexClient.getHistoricalData(currency, tickInterval: tickInterval, count: count) { (data) in
+            let series = ChartSeries(data)
+            print(data)
+            self.chart.gridColor = .white
+            series.area = true
+            series.color = ChartColors.greenColor()
+            DispatchQueue.main.async {
+                self.chart.add(series)
+                self.chartLoadingIndicator.stopAnimating()
+            }
+        }
+    }
+    
+    @IBAction func oneMinuteClicked(_ sender: UIBarButtonItem) {
+        chart.removeAllSeries()
+        chartData(tickInterval: "oneMin", count: 240) // last 4h
+    }
+    
+    @IBAction func fiveMinuteClicked(_ sender: UIBarButtonItem) {
+        chart.removeAllSeries()
+        chartData(tickInterval: "fiveMin", count: 144) // last 12h
+    }
+    
+    @IBAction func thirtyMinuteClicked(_ sender: UIBarButtonItem) {
+        chart.removeAllSeries()
+        chartData(tickInterval: "thirtyMin", count: 48) // show 1 day
+    }
+    
+    @IBAction func oneHourClicked(_ sender: UIBarButtonItem) {
+        chart.removeAllSeries()
+        chartData(tickInterval: "hour", count: 144) // show 1 week
+    }
+    
+    @IBAction func oneDayClicked(_ sender: UIBarButtonItem) {
+        chart.removeAllSeries()
+        chartData(tickInterval: "day", count: 30) // 1 month
+    }
+    
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {

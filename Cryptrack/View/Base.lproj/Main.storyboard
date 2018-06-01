@@ -391,20 +391,50 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsZ-AK-Quv" customClass="Chart" customModule="SwiftChart">
                                                 <rect key="frame" x="0.0" y="44" width="375" height="257"/>
+                                                <subviews>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-EN-9NB">
+                                                        <rect key="frame" x="177" y="118" width="20" height="20"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerY" secondItem="IsZ-AK-Quv" secondAttribute="centerY" id="kwJ-Zl-M5U"/>
+                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerX" secondItem="IsZ-AK-Quv" secondAttribute="centerX" id="zS9-Ih-LZH"/>
+                                                </constraints>
                                             </view>
                                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mna-UG-ngz">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                 <items>
-                                                    <barButtonItem title="1m" id="3fE-Jl-qGP"/>
+                                                    <barButtonItem title="1m" id="3fE-Jl-qGP">
+                                                        <connections>
+                                                            <action selector="oneMinuteClicked:" destination="0mm-JJ-ChC" id="Q5F-sQ-eeM"/>
+                                                        </connections>
+                                                    </barButtonItem>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6tt-Vc-pWt"/>
-                                                    <barButtonItem title="5m" id="lZu-U0-brP"/>
+                                                    <barButtonItem title="5m" id="lZu-U0-brP">
+                                                        <connections>
+                                                            <action selector="fiveMinuteClicked:" destination="0mm-JJ-ChC" id="C9Q-cl-lqc"/>
+                                                        </connections>
+                                                    </barButtonItem>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aWK-kc-5ff"/>
-                                                    <barButtonItem title="30m" id="dxM-ot-W8S"/>
+                                                    <barButtonItem title="30m" id="dxM-ot-W8S">
+                                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <connections>
+                                                            <action selector="thirtyMinuteClicked:" destination="0mm-JJ-ChC" id="2Kd-kf-qaS"/>
+                                                        </connections>
+                                                    </barButtonItem>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bGs-vg-GLF"/>
-                                                    <barButtonItem title="1h" id="dj0-8t-9Y3"/>
+                                                    <barButtonItem title="1h" id="dj0-8t-9Y3">
+                                                        <connections>
+                                                            <action selector="oneHourClicked:" destination="0mm-JJ-ChC" id="7ZQ-dX-Abd"/>
+                                                        </connections>
+                                                    </barButtonItem>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nd4-8t-X6B"/>
-                                                    <barButtonItem title="1D" id="Mry-If-cPL"/>
+                                                    <barButtonItem title="1D" id="Mry-If-cPL">
+                                                        <connections>
+                                                            <action selector="oneDayClicked:" destination="0mm-JJ-ChC" id="V8P-yS-l0L"/>
+                                                        </connections>
+                                                    </barButtonItem>
                                                 </items>
                                             </toolbar>
                                         </subviews>
@@ -603,6 +633,7 @@
                         <outlet property="askTableView" destination="tDk-Dz-670" id="n1C-kc-eu6"/>
                         <outlet property="bidTableView" destination="IIM-Xz-Fp6" id="rkD-1s-Avq"/>
                         <outlet property="chart" destination="IsZ-AK-Quv" id="FML-O4-6sY"/>
+                        <outlet property="chartLoadingIndicator" destination="uAc-EN-9NB" id="oyM-X1-KIP"/>
                         <outlet property="highLabel" destination="iB7-9v-YcS" id="o5P-cz-913"/>
                         <outlet property="lowLabel" destination="Hcx-g0-ubf" id="gAw-fg-mYd"/>
                         <outlet property="navigationBar" destination="0p3-MX-eeJ" id="Sgt-Kj-5Ux"/>
