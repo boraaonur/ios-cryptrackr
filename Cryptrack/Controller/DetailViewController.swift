@@ -26,10 +26,12 @@ class DetailViewController: UIViewController {
     var askArray = [Order]()
     @IBOutlet var chart: Chart!
     @IBOutlet var chartLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var touchedPrice: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        chart.delegate = self
         bidTableView.delegate = self
         bidTableView.dataSource = self
         askTableView.delegate = self
@@ -40,6 +42,8 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        touchedPrice.layer.zPosition = 1
         
         bittrexClient.getCurrencyData(currency) { (currencyData) in
             DispatchQueue.main.async {
@@ -166,6 +170,26 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor(red: 232.0/255.0, green: 136.0/255.0, blue: 131.0/255.0, alpha: 1.0)
             return cell
         }
+    }
+}
 
+extension DetailViewController: ChartDelegate {
+    func didTouchChart(_ chart: Chart, indexes: [Int?], x: Float, left: CGFloat) {
+        for (seriesIndex, dataIndex) in indexes.enumerated() {
+            if dataIndex != nil {
+                // The series at `seriesIndex` is that which has been touched
+                let value = chart.valueForSeries(seriesIndex, atIndex: dataIndex)
+                touchedPrice.text = String(value!)
+                print(value)
+            }
+        }
+    }
+    
+    func didFinishTouchingChart(_ chart: Chart) {
+        // Do something when finished
+    }
+    
+    func didEndTouchingChart(_ chart: Chart) {
+        // Do something when ending touching chart
     }
 }

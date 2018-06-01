@@ -389,19 +389,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-OX-GBG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsZ-AK-Quv" customClass="Chart" customModule="SwiftChart">
-                                                <rect key="frame" x="0.0" y="44" width="375" height="257"/>
-                                                <subviews>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-EN-9NB">
-                                                        <rect key="frame" x="177" y="118" width="20" height="20"/>
-                                                    </activityIndicatorView>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pe-Pk-rwd">
+                                                <rect key="frame" x="16" y="52" width="0.0" height="20"/>
                                                 <constraints>
-                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerY" secondItem="IsZ-AK-Quv" secondAttribute="centerY" id="kwJ-Zl-M5U"/>
-                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerX" secondItem="IsZ-AK-Quv" secondAttribute="centerX" id="zS9-Ih-LZH"/>
+                                                    <constraint firstAttribute="height" constant="20" id="hs1-I8-kd2"/>
                                                 </constraints>
-                                            </view>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mna-UG-ngz">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                 <items>
@@ -437,12 +433,28 @@
                                                     </barButtonItem>
                                                 </items>
                                             </toolbar>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsZ-AK-Quv" customClass="Chart" customModule="SwiftChart">
+                                                <rect key="frame" x="0.0" y="44" width="375" height="257"/>
+                                                <subviews>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-EN-9NB">
+                                                        <rect key="frame" x="177" y="118" width="20" height="20"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerY" secondItem="IsZ-AK-Quv" secondAttribute="centerY" id="kwJ-Zl-M5U"/>
+                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerX" secondItem="IsZ-AK-Quv" secondAttribute="centerX" id="zS9-Ih-LZH"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="mna-UG-ngz" firstAttribute="leading" secondItem="nPW-OX-GBG" secondAttribute="leading" id="3Pa-gu-faA"/>
                                             <constraint firstAttribute="trailing" secondItem="mna-UG-ngz" secondAttribute="trailing" id="I2k-cm-b5v"/>
+                                            <constraint firstItem="8Pe-Pk-rwd" firstAttribute="leading" secondItem="nPW-OX-GBG" secondAttribute="leading" constant="16" id="JEX-IP-2R0"/>
                                             <constraint firstAttribute="trailing" secondItem="IsZ-AK-Quv" secondAttribute="trailing" id="Om8-xE-pU1"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Pe-Pk-rwd" secondAttribute="trailing" constant="20" symbolic="YES" id="QUq-ju-KdO"/>
+                                            <constraint firstItem="8Pe-Pk-rwd" firstAttribute="top" secondItem="mna-UG-ngz" secondAttribute="bottom" constant="8" id="QXZ-id-xNh"/>
                                             <constraint firstItem="IsZ-AK-Quv" firstAttribute="leading" secondItem="nPW-OX-GBG" secondAttribute="leading" id="gwJ-5b-MCj"/>
                                             <constraint firstItem="IsZ-AK-Quv" firstAttribute="top" secondItem="mna-UG-ngz" secondAttribute="bottom" id="hZY-EE-iYe"/>
                                             <constraint firstItem="mna-UG-ngz" firstAttribute="top" secondItem="nPW-OX-GBG" secondAttribute="top" id="jFm-ye-493"/>
@@ -638,6 +650,7 @@
                         <outlet property="lowLabel" destination="Hcx-g0-ubf" id="gAw-fg-mYd"/>
                         <outlet property="navigationBar" destination="0p3-MX-eeJ" id="Sgt-Kj-5Ux"/>
                         <outlet property="pairLabel" destination="Llg-dm-uGK" id="cWC-jb-seE"/>
+                        <outlet property="touchedPrice" destination="8Pe-Pk-rwd" id="QVp-WB-8ft"/>
                         <outlet property="volumeBTCLabel" destination="L19-Ez-dkM" id="LSe-Gh-y4f"/>
                         <outlet property="volumeLabel" destination="6Xm-7b-H1z" id="38F-MF-t6o"/>
                         <outlet property="yesterdayLabel" destination="RzK-um-IDO" id="u9H-qm-MBC"/>
