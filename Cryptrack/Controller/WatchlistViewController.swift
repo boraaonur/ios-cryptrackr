@@ -15,6 +15,7 @@ class WatchlistViewController: UITableViewController {
     var watchlistCurrencies = [Currency]()
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var navigationBar: UINavigationItem!
+    let bittrexClient = BittrexClient.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class WatchlistViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // performSegue(withIdentifier: "goToDetailVC", sender: nil)
+        performSegue(withIdentifier: "goToDetailVC", sender: nil)
     }
     
     func loadWatchlistCurrencies() {
@@ -66,6 +67,14 @@ class WatchlistViewController: UITableViewController {
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         addClicked()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToDetailVC" {
+            let destination = segue.destination as! DetailViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            destination.currency = watchlistCurrencies[indexPath.row]
+        }
+    }
 
 }
 
@@ -89,6 +98,12 @@ extension WatchlistViewController {
         longPressGestureRecognizer.numberOfTapsRequired = 0
         longPressGestureRecognizer.minimumPressDuration = 1
         cell.addGestureRecognizer(longPressGestureRecognizer)
+        
+        bittrexClient.getLastPrice(watchlistCurrencies[indexPath.row]) { (lastPrice) in
+            DispatchQueue.main.async {
+                cell.priceLabel.text = String(lastPrice)
+            }
+        }
         
         return cell
     }

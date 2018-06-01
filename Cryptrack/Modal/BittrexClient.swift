@@ -39,8 +39,6 @@ class BittrexClient {
                                 try? self.context.save()
                             }
                         }
-                        print("b")
-                        
                         completion()
                         
                     } catch {
@@ -53,4 +51,58 @@ class BittrexClient {
         }
         task.resume()
     }
+    
+    func getCurrencyData(_ currency: Currency, completion: @escaping (_ data: CurrencyData) -> Void) {
+        let url = URL(string: "https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-\(currency.symbol!)")
+        let request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                do {
+                    let parsedResult: [String:Any]
+                    parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
+                    print(parsedResult)
+                    if let result = parsedResult["result"] as? [[String:Any]] {
+                        //print(result[0])
+                        let currencyData = CurrencyData(dictionary: result[0])
+                        completion(currencyData!)
+                    }
+                } catch {
+                    print("Error parsing data")
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func getLastPrice(_ currency: Currency, completion: @escaping (_ lastPrice: Double) -> Void) {
+        let url = URL(string: "https://bittrex.com/api/v1.1/public/getticker?market=BTC-\(currency.symbol!)")
+        let request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                let parsedResult: [String:Any]
+                do {
+                    parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
+                    if let result = parsedResult["result"] as? [String:Any] {
+                        for i in result {
+                            if i.key == "Last" {
+                                let lastPrice = (i.value as! Double)
+                                completion(lastPrice)
+                            }
+                        }
+                    }
+                } catch {
+                    print("Error parsing data")
+                }
+            }
+        }
+        task.resume()
+    }
+        
+
 }

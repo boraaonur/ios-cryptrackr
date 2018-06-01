@@ -10,26 +10,36 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var currency: Currency!
+    let bittrexClient = BittrexClient.shared
+    @IBOutlet var navigationBar: UINavigationItem!
+    @IBOutlet var pairLabel: UILabel!
+    @IBOutlet var yesterdayLabel: UILabel!
+    @IBOutlet var highLabel: UILabel!
+    @IBOutlet var lowLabel: UILabel!
+    @IBOutlet var volumeLabel: UILabel!
+    @IBOutlet var volumeBTCLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        bittrexClient.getCurrencyData(currency) { (currencyData) in
+            DispatchQueue.main.async {
+                self.pairLabel.text = "Pair: \(currencyData.marketName!)"
+                self.yesterdayLabel.text = "Yesterday: \(currencyData.yesterday!)"
+                self.highLabel.text = "24h High: \(currencyData.high!)"
+                self.lowLabel.text = "24h Low: \(currencyData.low!)"
+                self.volumeLabel.text = "24h Volume: \(currencyData.volume!)"
+                self.volumeBTCLabel.text = "24h Volume(BTC): \(currencyData.btcVolume!)"
+            }
+        }
+        
     }
-    */
 
+    
 }
