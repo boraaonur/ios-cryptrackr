@@ -18,35 +18,72 @@ class AddCoinViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     lazy var itemsToDelete = [Currency]()
     var filteredArray: [Currency] = [Currency]()
+    @IBOutlet var showWatchlistedButton: UIBarButtonItem!
+    @IBOutlet var navigationBar: UINavigationItem!
+    var showWatchlistedEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
 
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    @objc func hideWatchlisted() {
+        showWatchlistedEnabled = false
+        UserDefaults.standard.set(false, forKey: "show")
+        currencyArray.removeAll()
         loadCurrencies()
-        print("downloaded from coredata")
-        if currencyArray.count == 0 {
-            bittrexClient.getCoins {
-                print("downloading from zero")
-                self.loadCurrencies()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+        tableView.reloadData()
+        let showWatchlistedButton = UIBarButtonItem(title: "Show Watchlisted", style: .plain, target: self, action: #selector(showWatchlisted))
+        navigationBar.rightBarButtonItem = showWatchlistedButton
+    }
+    
+    @objc func showWatchlisted() {
+        showWatchlistedEnabled = true
+        UserDefaults.standard.set(true, forKey: "show")
+        currencyArray.removeAll()
+        let request: NSFetchRequest<Currency> = Currency.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        if let currencies = try? context.fetch(request) {
+            for currency in currencies {
+                currencyArray.append(currency)
             }
         }
-        
+        tableView.reloadData()
+        let hideWatchlistedButton = UIBarButtonItem(title: "Hide Watchlisted", style: .plain, target: self, action: #selector(hideWatchlisted))
+        navigationBar.rightBarButtonItem = hideWatchlistedButton
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
+            loadCurrencies()
+            // If first launch
+            if currencyArray.count == 0 {
+                bittrexClient.getCoins {
+                    self.loadCurrencies()
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            // If not first launch
+            } else {
+                showWatchlistedEnabled = UserDefaults.standard.bool(forKey: "show")
+                if showWatchlistedEnabled {
+                    let hideWatchlistedButton = UIBarButtonItem(title: "Hide Watchlisted", style: .plain, target: self, action: #selector(hideWatchlisted))
+                    navigationBar.rightBarButtonItem = hideWatchlistedButton
+                    showWatchlisted()
+                } else {
+                    let showWatchlistedButton = UIBarButtonItem(title: "Show Watchlisted", style: .plain, target: self, action: #selector(showWatchlisted))
+                    navigationBar.rightBarButtonItem = showWatchlistedButton
+                    loadCurrencies()
+                }
+        }
     }
 
-    func loadCurrencies() {
+    @objc func loadCurrencies() {
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
         request.predicate = NSPredicate(format: "inWatchlist == %@", "0")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -118,8 +155,14 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AddCoinViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        currencyArray.removeAll() // this allows update on deletion
-        loadCurrencies()
+        if showWatchlistedEnabled {
+            currencyArray.removeAll() // this allows update on deletion
+            showWatchlisted()
+        } else {
+            currencyArray.removeAll() // this allows update on deletion
+            loadCurrencies()
+        }
+        
         if searchBar.text?.isEmpty == false {
             currencyArray = currencyArray.filter({ (currency) -> Bool in
                 let currencyName = currency.name?.lowercased()
@@ -127,14 +170,21 @@ extension AddCoinViewController: UISearchBarDelegate {
                 return result != nil
             })
         } else {
-            loadCurrencies()
+            if showWatchlistedEnabled {
+                showWatchlisted()
+            } else {
+                loadCurrencies()
+            }
         }
         tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        currencyArray.removeAll()
-        loadCurrencies()
+        if showWatchlistedEnabled {
+            showWatchlisted()
+        } else {
+            loadCurrencies()
+        }
         tableView.reloadData()
     }
     

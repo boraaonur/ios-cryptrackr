@@ -100,7 +100,7 @@ extension WatchlistViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedObject = watchlistCurrencies[sourceIndexPath.row]
         
-        // Change index in visual array
+        // Change index visually
         watchlistCurrencies.remove(at: sourceIndexPath.row)
         watchlistCurrencies.insert(movedObject, at: destinationIndexPath.row)
         
@@ -113,6 +113,15 @@ extension WatchlistViewController {
         try? context.save()
         loadWatchlistCurrencies()
         NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row)")
-        // To check for correctness enable: self.tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            watchlistCurrencies[indexPath.row].setValue(false, forKey: "inWatchlist")
+            try? context.save()
+            loadWatchlistCurrencies()
+        }
+    }
+
 }

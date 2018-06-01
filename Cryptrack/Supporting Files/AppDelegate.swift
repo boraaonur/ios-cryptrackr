@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let appDefaults: [String:Any] = ["show" : false]
+        UserDefaults.standard.register(defaults: appDefaults)
+        
         return true
     }
     

@@ -204,7 +204,7 @@
             </objects>
             <point key="canvasLocation" x="2364" y="196"/>
         </scene>
-        <!--Select coins-->
+        <!--Add Coin View Controller-->
         <scene sceneID="Dzu-jW-CkG">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="xJo-lS-bwu" customClass="AddCoinViewController" customModule="Cryptrack" customModuleProvider="target" sceneMemberID="viewController">
@@ -246,10 +246,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kVr-qY-nrx"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Select coins" id="95y-7m-9lG"/>
+                    <navigationItem key="navigationItem" id="95y-7m-9lG">
+                        <barButtonItem key="rightBarButtonItem" title="Show Watchlisted" id="oRW-ff-i3q"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="navigationBar" destination="95y-7m-9lG" id="doJ-TV-N8a"/>
                         <outlet property="searchBar" destination="M4D-7V-s7f" id="qsh-81-P42"/>
                         <outlet property="searchDisplayController" destination="0Il-EC-0Pg" id="Y6I-ey-pWm"/>
+                        <outlet property="showWatchlistedButton" destination="oRW-ff-i3q" id="tBA-58-8mi"/>
                         <outlet property="tableView" destination="PbK-g1-d6D" id="ZWO-R4-15m"/>
                     </connections>
                 </viewController>
