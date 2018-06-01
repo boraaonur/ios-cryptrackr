@@ -103,6 +103,28 @@ class BittrexClient {
         }
         task.resume()
     }
+    
+    func getOrderbook(_ currency: Currency, type: String, completion: @escaping (_ orders: [[String:Any]]) -> Void) {
+        let url = URL(string: "https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-\(currency.symbol!)&type=both")
+        let request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                let parsedResult: [String:Any]
+                do {
+                    parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
+                    if let result = parsedResult["result"] as? [String:Any] {
+                        let orderArray = result["\(type)"] as! [[String:Any]]
+                        completion(orderArray)
+                    }
+                } catch {
+                    print("error parsing data")
+                }
+            }
+        }
+        task.resume()
+    }
         
-
 }

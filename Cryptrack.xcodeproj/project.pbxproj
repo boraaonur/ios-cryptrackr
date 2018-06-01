@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B535D4520C1135900982A6D /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B535D4420C1135900982A6D /* CurrencyData.swift */; };
+		9B535D4720C1251A00982A6D /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B535D4620C1251A00982A6D /* Bid.swift */; };
 		9BEC0FE520BF6933003200F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE420BF6933003200F6 /* AppDelegate.swift */; };
 		9BEC0FE720BF6933003200F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE620BF6933003200F6 /* ViewController.swift */; };
 		9BEC0FEA20BF6933003200F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC0FE820BF6933003200F6 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		9B535D4420C1135900982A6D /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
+		9B535D4620C1251A00982A6D /* Bid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		9BEC0FE120BF6933003200F6 /* Cryptrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BEC0FE420BF6933003200F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BEC0FE620BF6933003200F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				9BEC100720BF9D7C003200F6 /* DataModal.xcdatamodeld */,
 				9BEC100E20BFA2FE003200F6 /* BittrexClient.swift */,
 				9B535D4420C1135900982A6D /* CurrencyData.swift */,
+				9B535D4620C1251A00982A6D /* Bid.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				9BEC0FF720BF6AC8003200F6 /* WatchlistViewController.swift in Sources */,
 				9B535D4520C1135900982A6D /* CurrencyData.swift in Sources */,
 				9BEC0FE520BF6933003200F6 /* AppDelegate.swift in Sources */,
+				9B535D4720C1251A00982A6D /* Bid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
