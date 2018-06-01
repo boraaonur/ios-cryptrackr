@@ -47,9 +47,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UnT-4g-HAO">
-                                            <rect key="frame" x="11" y="11" width="20" height="20"/>
-                                        </activityIndicatorView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v8r-Fn-FTm">
                                             <rect key="frame" x="0.0" y="0.0" width="43.5" height="43.5"/>
                                         </imageView>
@@ -65,16 +62,19 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UnT-4g-HAO">
+                                            <rect key="frame" x="12" y="12" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="UnT-4g-HAO" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="MAO-Nu-5vA"/>
+                                        <constraint firstItem="UnT-4g-HAO" firstAttribute="centerY" secondItem="v8r-Fn-FTm" secondAttribute="centerY" id="9k9-He-LPg"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gof-QB-z8i" secondAttribute="trailing" constant="20" symbolic="YES" id="QRg-Qi-G2U"/>
                                         <constraint firstItem="v8r-Fn-FTm" firstAttribute="width" secondItem="q12-Uc-hIS" secondAttribute="height" multiplier="1:1" id="YIi-O0-coQ"/>
                                         <constraint firstItem="2T7-VS-BkH" firstAttribute="trailing" secondItem="q12-Uc-hIS" secondAttribute="trailingMargin" id="cBD-J6-9CT"/>
-                                        <constraint firstItem="UnT-4g-HAO" firstAttribute="centerX" secondItem="v8r-Fn-FTm" secondAttribute="centerX" id="fFF-3b-f3g"/>
                                         <constraint firstItem="Gof-QB-z8i" firstAttribute="leading" secondItem="v8r-Fn-FTm" secondAttribute="trailing" constant="8" id="jP8-FJ-tJ0"/>
                                         <constraint firstItem="v8r-Fn-FTm" firstAttribute="leading" secondItem="q12-Uc-hIS" secondAttribute="leading" id="lH1-lq-eyC"/>
                                         <constraint firstItem="2T7-VS-BkH" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="peB-FJ-Woh"/>
+                                        <constraint firstItem="UnT-4g-HAO" firstAttribute="centerX" secondItem="v8r-Fn-FTm" secondAttribute="centerX" id="sgh-N2-pQs"/>
                                         <constraint firstAttribute="bottom" secondItem="v8r-Fn-FTm" secondAttribute="bottom" id="wQK-XM-2Eb"/>
                                         <constraint firstItem="v8r-Fn-FTm" firstAttribute="height" secondItem="q12-Uc-hIS" secondAttribute="height" id="wWt-Jy-L1S"/>
                                         <constraint firstItem="Gof-QB-z8i" firstAttribute="centerY" secondItem="q12-Uc-hIS" secondAttribute="centerY" id="xMS-vS-C4n"/>
@@ -136,6 +136,9 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-EN-9NB">
+                                                <rect key="frame" x="177" y="140" width="20" height="20"/>
+                                            </activityIndicatorView>
                                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mna-UG-ngz">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                 <items>
@@ -173,16 +176,7 @@
                                             </toolbar>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsZ-AK-Quv" customClass="Chart" customModule="SwiftChart">
                                                 <rect key="frame" x="0.0" y="44" width="375" height="257"/>
-                                                <subviews>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-EN-9NB">
-                                                        <rect key="frame" x="177" y="118" width="20" height="20"/>
-                                                    </activityIndicatorView>
-                                                </subviews>
                                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerY" secondItem="IsZ-AK-Quv" secondAttribute="centerY" id="kwJ-Zl-M5U"/>
-                                                    <constraint firstItem="uAc-EN-9NB" firstAttribute="centerX" secondItem="IsZ-AK-Quv" secondAttribute="centerX" id="zS9-Ih-LZH"/>
-                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -193,15 +187,20 @@
                                             <constraint firstAttribute="trailing" secondItem="IsZ-AK-Quv" secondAttribute="trailing" id="Om8-xE-pU1"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Pe-Pk-rwd" secondAttribute="trailing" constant="20" symbolic="YES" id="QUq-ju-KdO"/>
                                             <constraint firstItem="8Pe-Pk-rwd" firstAttribute="top" secondItem="mna-UG-ngz" secondAttribute="bottom" constant="8" id="QXZ-id-xNh"/>
+                                            <constraint firstItem="uAc-EN-9NB" firstAttribute="centerY" secondItem="nPW-OX-GBG" secondAttribute="centerY" id="TPF-iB-2JY"/>
                                             <constraint firstItem="IsZ-AK-Quv" firstAttribute="leading" secondItem="nPW-OX-GBG" secondAttribute="leading" id="gwJ-5b-MCj"/>
                                             <constraint firstItem="IsZ-AK-Quv" firstAttribute="top" secondItem="mna-UG-ngz" secondAttribute="bottom" id="hZY-EE-iYe"/>
                                             <constraint firstItem="mna-UG-ngz" firstAttribute="top" secondItem="nPW-OX-GBG" secondAttribute="top" id="jFm-ye-493"/>
                                             <constraint firstAttribute="bottom" secondItem="IsZ-AK-Quv" secondAttribute="bottom" id="uqQ-Us-FjE"/>
+                                            <constraint firstItem="uAc-EN-9NB" firstAttribute="centerX" secondItem="nPW-OX-GBG" secondAttribute="centerX" id="vuq-8e-hR2"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paQ-Cc-4Hf">
                                         <rect key="frame" x="0.0" y="301.5" width="375" height="301.5"/>
                                         <subviews>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Xhu-Od-eOJ">
+                                                <rect key="frame" x="177" y="65.5" width="20" height="20"/>
+                                            </activityIndicatorView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxH-B2-6PV">
                                                 <rect key="frame" x="8" y="8" width="0.0" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -274,6 +273,9 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STb-Gh-Iac">
                                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="151"/>
                                                                 <subviews>
+                                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hhg-KY-fRb">
+                                                                        <rect key="frame" x="83" y="75.5" width="20" height="20"/>
+                                                                    </activityIndicatorView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnV-Fq-V7C">
                                                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="20"/>
                                                                         <constraints>
@@ -305,15 +307,20 @@
                                                                     <constraint firstItem="SnV-Fq-V7C" firstAttribute="leading" secondItem="STb-Gh-Iac" secondAttribute="leading" id="05x-68-9fa"/>
                                                                     <constraint firstAttribute="bottom" secondItem="IIM-Xz-Fp6" secondAttribute="bottom" id="CNm-AQ-C3R"/>
                                                                     <constraint firstAttribute="trailing" secondItem="SnV-Fq-V7C" secondAttribute="trailing" id="NWe-tf-uB1"/>
+                                                                    <constraint firstItem="hhg-KY-fRb" firstAttribute="centerY" secondItem="IIM-Xz-Fp6" secondAttribute="centerY" id="YOE-Gb-amK"/>
                                                                     <constraint firstAttribute="trailing" secondItem="IIM-Xz-Fp6" secondAttribute="trailing" id="Zwi-vG-3SQ"/>
                                                                     <constraint firstItem="IIM-Xz-Fp6" firstAttribute="top" secondItem="SnV-Fq-V7C" secondAttribute="bottom" id="hxM-AR-F0a"/>
                                                                     <constraint firstItem="IIM-Xz-Fp6" firstAttribute="leading" secondItem="STb-Gh-Iac" secondAttribute="leading" id="mJ4-MR-RfP"/>
                                                                     <constraint firstItem="SnV-Fq-V7C" firstAttribute="top" secondItem="STb-Gh-Iac" secondAttribute="top" id="ppP-sA-6Di"/>
+                                                                    <constraint firstItem="hhg-KY-fRb" firstAttribute="centerX" secondItem="IIM-Xz-Fp6" secondAttribute="centerX" id="yhe-6r-BIF"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4j-kI-tnB">
                                                                 <rect key="frame" x="187.5" y="0.0" width="187.5" height="151"/>
                                                                 <subviews>
+                                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5Q7-DZ-pfa">
+                                                                        <rect key="frame" x="83.5" y="75.5" width="20" height="20"/>
+                                                                    </activityIndicatorView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShL-L8-cvv">
                                                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="20.5"/>
                                                                         <constraints>
@@ -345,7 +352,9 @@
                                                                     <constraint firstItem="tDk-Dz-670" firstAttribute="top" secondItem="ShL-L8-cvv" secondAttribute="bottom" id="6d4-5K-Zcl"/>
                                                                     <constraint firstItem="tDk-Dz-670" firstAttribute="leading" secondItem="r4j-kI-tnB" secondAttribute="leading" id="G9D-cA-jys"/>
                                                                     <constraint firstItem="ShL-L8-cvv" firstAttribute="top" secondItem="r4j-kI-tnB" secondAttribute="top" id="Wgc-aR-1Dt"/>
+                                                                    <constraint firstItem="5Q7-DZ-pfa" firstAttribute="centerY" secondItem="tDk-Dz-670" secondAttribute="centerY" id="ZNL-2g-FIQ"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ShL-L8-cvv" secondAttribute="trailing" id="ZmI-V5-TJp"/>
+                                                                    <constraint firstItem="5Q7-DZ-pfa" firstAttribute="centerX" secondItem="tDk-Dz-670" secondAttribute="centerX" id="cAj-D6-uYY"/>
                                                                     <constraint firstAttribute="bottom" secondItem="tDk-Dz-670" secondAttribute="bottom" id="erk-l2-rOG"/>
                                                                     <constraint firstItem="ShL-L8-cvv" firstAttribute="leading" secondItem="r4j-kI-tnB" secondAttribute="leading" id="sXw-xo-nmV"/>
                                                                     <constraint firstAttribute="trailing" secondItem="tDk-Dz-670" secondAttribute="trailing" id="wnK-x2-G5G"/>
@@ -358,8 +367,10 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="Xhu-Od-eOJ" firstAttribute="centerX" secondItem="8Rl-aR-2zZ" secondAttribute="centerX" id="INc-zH-wTN"/>
                                             <constraint firstAttribute="bottom" secondItem="QA2-nM-SlD" secondAttribute="bottom" id="IfJ-yO-ReG"/>
                                             <constraint firstAttribute="trailing" secondItem="QA2-nM-SlD" secondAttribute="trailing" id="KnR-Kp-rb9"/>
+                                            <constraint firstItem="Xhu-Od-eOJ" firstAttribute="centerY" secondItem="8Rl-aR-2zZ" secondAttribute="centerY" id="OP5-9i-uSi"/>
                                             <constraint firstItem="QA2-nM-SlD" firstAttribute="top" secondItem="paQ-Cc-4Hf" secondAttribute="top" id="WyW-kR-pzv"/>
                                             <constraint firstItem="QA2-nM-SlD" firstAttribute="leading" secondItem="paQ-Cc-4Hf" secondAttribute="leading" id="lfE-bc-6Ho"/>
                                         </constraints>
@@ -378,11 +389,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Market Summary" id="0p3-MX-eeJ"/>
                     <connections>
+                        <outlet property="askLoadingIndicator" destination="5Q7-DZ-pfa" id="qyO-zl-pUY"/>
                         <outlet property="askTableView" destination="tDk-Dz-670" id="n1C-kc-eu6"/>
+                        <outlet property="bidLoadingIndicator" destination="hhg-KY-fRb" id="p2D-OM-qGC"/>
                         <outlet property="bidTableView" destination="IIM-Xz-Fp6" id="rkD-1s-Avq"/>
                         <outlet property="chart" destination="IsZ-AK-Quv" id="FML-O4-6sY"/>
                         <outlet property="chartLoadingIndicator" destination="uAc-EN-9NB" id="oyM-X1-KIP"/>
                         <outlet property="highLabel" destination="iB7-9v-YcS" id="o5P-cz-913"/>
+                        <outlet property="infoLoadingIndicator" destination="Xhu-Od-eOJ" id="UWh-8T-wdV"/>
                         <outlet property="lowLabel" destination="Hcx-g0-ubf" id="gAw-fg-mYd"/>
                         <outlet property="navigationBar" destination="0p3-MX-eeJ" id="Sgt-Kj-5Ux"/>
                         <outlet property="pairLabel" destination="Llg-dm-uGK" id="cWC-jb-seE"/>

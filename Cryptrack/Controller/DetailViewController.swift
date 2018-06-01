@@ -27,6 +27,9 @@ class DetailViewController: UIViewController {
     @IBOutlet var chart: Chart!
     @IBOutlet var chartLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet var touchedPrice: UILabel!
+    @IBOutlet var askLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var infoLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var bidLoadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +47,9 @@ class DetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         touchedPrice.layer.zPosition = 1
+        chartLoadingIndicator.layer.zPosition = 1
         
+        infoLoadingIndicator.startAnimating()
         bittrexClient.getCurrencyData(currency) { (currencyData, error) in
             if error != nil {
                 self.displayError(message: error!)
@@ -74,9 +79,13 @@ class DetailViewController: UIViewController {
                         self.volumeBTCLabel.text = "24h Volume(BTC): \(volumeBTC)"
                     }
                 }
+                DispatchQueue.main.async {
+                    self.infoLoadingIndicator.stopAnimating()
+                }
             }
         }
         
+        bidLoadingIndicator.startAnimating()
         bittrexClient.getOrderbook(currency, type: "buy") { (orderList, error) in
             if error != nil {
                 self.displayError(message: error!)
@@ -91,8 +100,10 @@ class DetailViewController: UIViewController {
                     self.bidTableView.reloadData()
                 }
             }
+            self.bidLoadingIndicator.stopAnimating()
         }
         
+        askLoadingIndicator.startAnimating()
         bittrexClient.getOrderbook(currency, type: "sell") { (orderList, error) in
             if error != nil {
                 self.displayError(message: error!)
@@ -107,6 +118,7 @@ class DetailViewController: UIViewController {
                     self.askTableView.reloadData()
                 }
             }
+            self.askLoadingIndicator.stopAnimating()
         }
         
         // 30min - Daily (Default)

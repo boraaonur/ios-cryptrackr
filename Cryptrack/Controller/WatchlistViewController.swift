@@ -50,7 +50,6 @@ class WatchlistViewController: UITableViewController {
     }
     
     func loadWatchlistCurrencies() {
-        watchlistCurrencies.removeAll()
         let request: NSFetchRequest<Currency> = Currency.fetchRequest()
         request.predicate = NSPredicate(format: "inWatchlist == %@", "1")
         request.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
@@ -110,6 +109,13 @@ extension WatchlistViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchlistCell
         cell.currencyNameLabel.text = watchlistCurrencies[indexPath.row].name
+        cell.loadingIndicator.layer.zPosition = 1
+        cell.loadingIndicator.color = .black
+        cell.loadingIndicator.isHidden = false
+
+        if self.watchlistCurrencies[indexPath.row].icon == nil {
+            cell.loadingIndicator.startAnimating()
+        }
         
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(enterEditMode))
         longPressGestureRecognizer.numberOfTouchesRequired = 1
@@ -128,18 +134,13 @@ extension WatchlistViewController {
                 }
             }
             
-            DispatchQueue.main.async {
-                cell.loadingIndicator.startAnimating()
-            }
-            
             if let data = self.watchlistCurrencies[indexPath.row].icon {
                 DispatchQueue.main.async {
                     cell.icon.image = UIImage(data: data)
                     cell.loadingIndicator.stopAnimating()
                 }
             }
-            
-            
+
             }
             return cell
     }
@@ -162,6 +163,7 @@ extension WatchlistViewController {
             updatedIndex += 1
         }
         try? context.save()
+        watchlistCurrencies.removeAll()
         loadWatchlistCurrencies()
         NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row)")
     }
@@ -171,6 +173,7 @@ extension WatchlistViewController {
         if editingStyle == UITableViewCellEditingStyle.delete {
             watchlistCurrencies[indexPath.row].setValue(false, forKey: "inWatchlist")
             try? context.save()
+            watchlistCurrencies.removeAll()
             loadWatchlistCurrencies()
         }
     }

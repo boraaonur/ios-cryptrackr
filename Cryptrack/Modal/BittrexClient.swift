@@ -90,8 +90,9 @@ class BittrexClient {
                     if let result = parsedResult["result"] as? [String:Any] {
                         for i in result {
                             if i.key == "Last" {
-                                let lastPrice = (i.value as! Double)
-                                completion(lastPrice, nil)
+                                if let lastPrice = i.value as? Double {
+                                    completion(lastPrice, nil)
+                                }
                             }
                         }
                     }
@@ -139,12 +140,12 @@ class BittrexClient {
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                     if let result = parsedResult["result"] as? [[String:Any]] {
-                        print("result check")
                         var x = 0
                         var graphData = [Float]()
                         for i in result {
-                            let singleData = i["O"] as! Float
-                            graphData.append(singleData)
+                            if let singleData = i["O"] as? Float {
+                                graphData.append(singleData)
+                            }
                             x += 1
                             if x == count {
                                 break;
