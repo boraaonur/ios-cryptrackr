@@ -32,7 +32,6 @@ class WatchlistViewController: UITableViewController {
             if i.icon == nil {
                 bittrexClient.downloadLogo(currency: i, completion: {
                     self.loadWatchlistCurrencies()
-                    print("ll")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }

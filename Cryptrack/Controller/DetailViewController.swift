@@ -36,8 +36,8 @@ class DetailViewController: UIViewController {
         bidTableView.dataSource = self
         askTableView.delegate = self
         askTableView.dataSource = self
-        askTableView.rowHeight = 16
-        bidTableView.rowHeight = 16
+        askTableView.rowHeight = 20
+        bidTableView.rowHeight = 20
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,9 +166,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = UITableViewCell(style: .value1, reuseIdentifier: "askCell")
-            cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 8)
+            cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 11)
             cell.textLabel?.text = String(self.askArray[indexPath.row].quantity!)
-            cell.detailTextLabel?.font = UIFont(name: "HelveticaNeue", size: 8)
+            cell.detailTextLabel?.font = UIFont(name: "HelveticaNeue", size: 11)
             cell.detailTextLabel?.text = String(self.askArray[indexPath.row].rate!)
             cell.detailTextLabel?.textColor = .black
             cell.backgroundColor = UIColor(red: 232.0/255.0, green: 136.0/255.0, blue: 131.0/255.0, alpha: 1.0)
