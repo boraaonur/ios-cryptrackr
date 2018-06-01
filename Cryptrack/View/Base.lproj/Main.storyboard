@@ -247,7 +247,7 @@
                         <viewLayoutGuide key="safeArea" id="kVr-qY-nrx"/>
                     </view>
                     <navigationItem key="navigationItem" id="95y-7m-9lG">
-                        <barButtonItem key="rightBarButtonItem" title="Show Watchlisted" id="oRW-ff-i3q"/>
+                        <barButtonItem key="rightBarButtonItem" title="Hide Watchlisted" id="oRW-ff-i3q"/>
                     </navigationItem>
                     <connections>
                         <outlet property="navigationBar" destination="95y-7m-9lG" id="doJ-TV-N8a"/>

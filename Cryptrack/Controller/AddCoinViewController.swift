@@ -20,7 +20,7 @@ class AddCoinViewController: UIViewController {
     var filteredArray: [Currency] = [Currency]()
     @IBOutlet var showWatchlistedButton: UIBarButtonItem!
     @IBOutlet var navigationBar: UINavigationItem!
-    var showWatchlistedEnabled = false
+    var showWatchlistedEnabled: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
