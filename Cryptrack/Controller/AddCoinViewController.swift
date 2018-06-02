@@ -152,11 +152,6 @@ extension AddCoinViewController: UITableViewDelegate, UITableViewDataSource {
         }
         try? context.save()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
 }
 
 
@@ -196,6 +191,6 @@ extension AddCoinViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 }

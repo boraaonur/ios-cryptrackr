@@ -30,6 +30,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var askLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet var infoLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet var bidLoadingIndicator: UIActivityIndicatorView!
+    var selected = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,9 +125,19 @@ class DetailViewController: UIViewController {
         bittrexClient.getHistoricalData(currency, tickInterval: "thirtyMin", count: 48) { (data, error) in
             if error != nil {
                 self.displayError(message: error!)
+                self.chartLoadingIndicator.stopAnimating()
             } else {
                 if data != nil {
-                    let series = ChartSeries(data!)
+                    var tupleArray: [(x: Double, y: Double)] = [(x: Double, y: Double)]()
+                    var a: Double = 0
+                    let count = data?.count
+                    print(count!)
+                    for i in 0...(count! - 1) {
+                        let tuple = (a, data![i])
+                        tupleArray.append(tuple)
+                        a += 1
+                    }
+                    let series = ChartSeries(data: tupleArray)
                     self.chart.gridColor = .white
                     self.chart.showXLabelsAndGrid = false
                     self.chart.showYLabelsAndGrid = false
@@ -140,7 +151,6 @@ class DetailViewController: UIViewController {
                     print("no historical data for selected coin")
                 }
             }
-            
         }
     }
     
@@ -149,9 +159,18 @@ class DetailViewController: UIViewController {
         bittrexClient.getHistoricalData(currency, tickInterval: tickInterval, count: count) { (data, error) in
             if error != nil {
                 self.displayError(message: error!)
+                self.chartLoadingIndicator.stopAnimating()
             } else {
                 if data != nil {
-                    let series = ChartSeries(data!)
+                    var tupleArray: [(x: Double, y: Double)] = [(x: Double, y: Double)]()
+                    var a: Double = 0
+                    for i in 0...(count-1) {
+                        print(data![i])
+                        let tuple = (a, data![i])
+                        tupleArray.append(tuple)
+                        a += 1
+                    }
+                    let series = ChartSeries(data: tupleArray)
                     self.chart.gridColor = .white
                     self.chart.showXLabelsAndGrid = false
                     self.chart.showYLabelsAndGrid = false
@@ -169,31 +188,45 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBAction func oneMinuteClicked(_ sender: UIBarButtonItem) {
+    @IBAction func showLast4HourClicked(_ sender: UIBarButtonItem) {
+        highlightButton(sender: sender)
         chart.removeAllSeries()
-        chartData(tickInterval: "oneMin", count: 240) // last 4h
+        chartData(tickInterval: "fiveMin", count: 48) // show last 4h
     }
     
-    @IBAction func fiveMinuteClicked(_ sender: UIBarButtonItem) {
+    @IBAction func showLast1DayClicked(_ sender: UIBarButtonItem) {
+        highlightButton(sender: sender)
         chart.removeAllSeries()
-        chartData(tickInterval: "fiveMin", count: 144) // last 12h
+        chartData(tickInterval: "thirtyMin", count: 48) // show last 24h
     }
     
-    @IBAction func thirtyMinuteClicked(_ sender: UIBarButtonItem) {
+    @IBAction func showLast1WeekClicked(_ sender: UIBarButtonItem) {
+        highlightButton(sender: sender)
         chart.removeAllSeries()
-        chartData(tickInterval: "thirtyMin", count: 48) // show 1 day
+        chartData(tickInterval: "hour", count: 168) // show 1 week
     }
     
-    @IBAction func oneHourClicked(_ sender: UIBarButtonItem) {
+    @IBAction func showLast1MonthClicked(_ sender: UIBarButtonItem) {
+        highlightButton(sender: sender)
         chart.removeAllSeries()
-        chartData(tickInterval: "hour", count: 144) // show 1 week
+        chartData(tickInterval: "day", count: 30) // show 1 month
     }
     
-    @IBAction func oneDayClicked(_ sender: UIBarButtonItem) {
+    @IBAction func showLast6MonthClicked(_ sender: UIBarButtonItem) {
+        highlightButton(sender: sender)
         chart.removeAllSeries()
-        chartData(tickInterval: "day", count: 30) // 1 month
+        chartData(tickInterval: "day", count: 180) // 6 month
+        
+        
     }
     
+    func highlightButton(sender: UIBarButtonItem) {
+        let buttons = sender.buttonGroup?.barButtonItems
+        for i in buttons! {
+            i.tintColor = UIColor.blue
+        }
+        sender.tintColor = .black
+    }
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -235,6 +268,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    
 }
 
 extension DetailViewController: ChartDelegate {

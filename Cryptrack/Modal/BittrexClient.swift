@@ -126,7 +126,7 @@ class BittrexClient {
         task.resume()
     }
     
-    func getHistoricalData(_ currency: Currency, tickInterval: String, count: Int, completion: @escaping (_ data: [Float]?, _ error: String?) -> Void) {
+    func getHistoricalData(_ currency: Currency, tickInterval: String, count: Int, completion: @escaping (_ data: [Double]?, _ error: String?) -> Void) {
         let url = URL(string: "https://bittrex.com/Api/v2.0/pub/market/GetTicks?marketName=BTC-\(currency.symbol!)&tickInterval=\(tickInterval)")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
@@ -140,9 +140,9 @@ class BittrexClient {
                     parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:Any]
                     if let result = parsedResult["result"] as? [[String:Any]] {
                         var x = 0
-                        var graphData = [Float]()
+                        var graphData = [Double]()
                         for i in result {
-                            if let singleData = i["O"] as? Float {
+                            if let singleData = i["O"] as? Double {
                                 graphData.append(singleData)
                             }
                             x += 1

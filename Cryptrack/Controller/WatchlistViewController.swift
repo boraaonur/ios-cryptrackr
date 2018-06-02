@@ -122,6 +122,7 @@ extension WatchlistViewController {
         bittrexClient.getLastPrice(watchlistCurrencies[indexPath.row]) { (lastPrice, error)  in
             if error != nil {
                 self.displayError(message: error!)
+                cell.loadingIndicator.stopAnimating()
             } else {
                 DispatchQueue.main.async {
                     if let price = lastPrice {
